@@ -1,0 +1,29 @@
+{
+  "name": "cookie-empire-idle-game",
+  "version": "1.0.0",
+  "description": "An addictive idle clicker game",
+  "main": "index.html",
+  "scripts": {
+    "serve": "http-server . -p 8080",
+    "build-android": "cordova build android",
+    "run-android": "cordova run android",
+    "add-android": "cordova platform add android"
+  },
+  "keywords": [
+    "idle",
+    "clicker",
+    "game",
+    "mobile",
+    "android"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "cordova": {
+    "platforms": [
+      "android"
+    ]
+  }
+}
