@@ -8,17 +8,18 @@
 <meta name="keywords" content="meal plans, nutrition, diet, calorie tracking, healthy eating">
 <meta name="author" content="NutriFit">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2'><path stroke-linecap='round' stroke-linejoin='round' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'/><path stroke-linecap='round' stroke-linejoin='round' d='M8 12h.01M12 8v.01M16 12h.01'/></svg>">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --primary-green: #10b981;
-  --primary-blue: #3b82f6;
-  --text-dark: #1f2937;
-  --text-gray: #6b7280;
-  --text-light: #9ca3af;
-  --bg-light: #f9fafb;
+  --black: #000000;
+  --dark-gray: #1a1a1a;
+  --medium-gray: #666666;
+  --light-gray: #f5f5f5;
   --white: #ffffff;
+  --border: #e0e0e0;
 }
 
 * {
@@ -28,10 +29,10 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Poppins', sans-serif;
   line-height: 1.6;
-  color: var(--text-dark);
-  background: var(--bg-light);
+  color: var(--black);
+  background: var(--white);
 }
 
 /* Navigation */
@@ -41,52 +42,58 @@ body {
   left: 0;
   right: 0;
   background: var(--white);
-  padding: 16px 0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 20px 0;
   z-index: 1000;
+  border-bottom: 1px solid var(--border);
 }
 
 .nav-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 24px;
+  padding: 0 40px;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--primary-green);
+  gap: 12px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--black);
   text-decoration: none;
+  letter-spacing: -0.5px;
 }
 
 .logo::before {
-  content: "⚡";
-  font-size: 24px;
+  content: "";
+  width: 32px;
+  height: 32px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23000000' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'/%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M8 12h.01M12 8v.01M16 12h.01'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: block;
 }
 
 .nav-links {
   display: flex;
-  gap: 32px;
+  gap: 40px;
   list-style: none;
+  align-items: center;
 }
 
 .nav-links a {
   text-decoration: none;
-  color: var(--text-gray);
+  color: var(--medium-gray);
   font-weight: 500;
-  font-size: 14px;
-  transition: color 0.2s ease;
+  font-size: 15px;
+  position: relative;
 }
 
-.nav-links a:hover,
 .nav-links a.active {
-  color: var(--text-dark);
+  color: var(--black);
 }
 
 /* Main Content */
@@ -1022,8 +1029,7 @@ body {
       <a href="index.html" class="logo">NutriFit</a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="calculator.html">Calculator</a></li>
-        <li><a href="meal-plans.html" class="active">Meal Plans</a></li>
+        <li><a href="dashboard.html">Calculator</a></li>
       </ul>
     </div>
   </nav>
