@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" width=device-width, initial-scale=1.0">
+    <title>Adventure Quest - Idle RPG</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <div class="character-info">
+                <div class="character-avatar" id="character-avatar">🧙‍♂️</div>
+                <div class="character-details">
+                    <h2 id="character-name">Hero</h2>
+                    <p id="character-class">Novice</p>
+                    <p id="character-level">Level 1</p>
+                </div>
+            </div>
+            <div class="stats">
+                <div class="stat">
+                    <span class="label">Gold:</span>
+                    <span id="gold">0</span>
+                </div>
+                <div class="stat">
+                    <span class="label">Experience:</span>
+                    <span id="experience">0</span>
+                </div>
+                <div class="stat">
+                    <span class="label">HP:</span>
+                    <span id="hp">100/100</span>
+                </div>
+                <div class="stat">
+                    <span class="label">MP:</span>
+                    <span id="mp">50/50</span>
+                </div>
+            </div>
+            <div class="exp-bar">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="exp-progress"></div>
+                </div>
+                <span id="exp-text">0/100 EXP</span>
+            </div>
+        </header>
+
+        <main>
+            <div class="battle-section">
+                <div class="enemy-info" id="enemy-info">
+                    <div class="enemy-avatar" id="enemy-avatar">🐀</div>
+                    <div class="enemy-details">
+                        <p id="enemy-name">Rat</p>
+                        <div class="enemy-hp-bar">
+                            <div class="progress-bar">
+                                <div class="progress-fill enemy-hp" id="enemy-hp-progress"></div>
+                            </div>
+                            <span id="enemy-hp-text">10/10</span>
+                        </div>
+                    </div>
+                </div>
+                <button id="attack-btn" class="attack-button">
+                    ⚔️ Attack
+                </button>
+                <p id="battle-log">Click to attack the enemy!</p>
+            </div>
+
+            <div class="classes-section">
+                <h2>Class Advancement</h2>
+                <div class="classes-list" id="classes">
+                    <!-- Classes will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="equipment-section">
+                <h2>Equipment & Skills</h2>
+                <div class="equipment-list" id="equipment">
+                    <!-- Equipment will be populated by JavaScript -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
