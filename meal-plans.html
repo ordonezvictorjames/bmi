@@ -20,6 +20,15 @@
   --light-gray: #f5f5f5;
   --white: #ffffff;
   --border: #e0e0e0;
+  --bg-main: #fafafa;
+  --card-bg: #ffffff;
+  --accent-blue: #3b82f6;
+  --accent-green: #10b981;
+  --accent-orange: #f59e0b;
+  --accent-purple: #8b5cf6;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --border-light: #e2e8f0;
 }
 
 * {
@@ -31,8 +40,9 @@
 body {
   font-family: 'Poppins', sans-serif;
   line-height: 1.6;
-  color: var(--black);
-  background: var(--white);
+  color: var(--text-primary);
+  background: var(--bg-main);
+  font-size: 14px;
 }
 
 /* Navigation */
@@ -98,111 +108,108 @@ body {
 
 /* Main Content */
 .meal-plans-section {
-  padding: 100px 24px 60px;
-  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0fdf4 100%);
+  padding: 100px 32px 60px;
+  background: var(--bg-main);
   min-height: 100vh;
 }
 
 .meal-plans-container {
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
 }
 
 .meal-plans-grid {
   display: grid;
-  grid-template-columns: 400px 1fr;
-  gap: 32px;
+  grid-template-columns: 320px 1fr;
+  gap: 24px;
   align-items: start;
 }
 
 /* Goal Selection */
 .goal-selection {
-  background: var(--white);
-  border-radius: 24px;
-  padding: 32px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 120px;
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid var(--border-light);
   height: fit-content;
 }
 
 .goal-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 16px;
   margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-light);
 }
 
 .goal-title {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
 }
 
 .print-btn {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 12px 20px;
-  background: var(--bg-light);
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-gray);
+  padding: 10px 16px;
+  background: var(--black);
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
 .print-btn:hover {
-  background: #e5e7eb;
+  background: var(--dark-gray);
+  transform: translateY(-1px);
 }
 
 .goal-options {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
+  gap: 8px;
   margin-bottom: 24px;
 }
 
 .goal-option {
-  padding: 16px 20px;
-  border-radius: 16px;
+  padding: 14px 16px;
+  border-radius: 8px;
   text-align: left;
   cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  border: 1.5px solid var(--border-light);
   display: flex;
   align-items: center;
   gap: 12px;
-}
-
-.goal-option.weight-loss {
-  background: linear-gradient(135deg, #fef3c7, #fde68a);
-}
-
-.goal-option.maintain {
-  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
-  border-color: var(--primary-green);
-}
-
-.goal-option.weight-gain {
-  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+  background: var(--white);
 }
 
 .goal-option:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: var(--medium-gray);
+  background: var(--light-gray);
 }
 
 .goal-option.active {
-  border-color: var(--primary-green);
-  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+  border-color: var(--medium-gray);
+  background: var(--medium-gray);
+}
+
+.goal-option.active .goal-calories,
+.goal-option.active .goal-name {
+  color: var(--white);
 }
 
 .goal-icon {
-  font-size: 20px;
+  font-size: 18px;
   flex-shrink: 0;
+  opacity: 0.8;
 }
 
 .goal-details {
@@ -210,146 +217,194 @@ body {
 }
 
 .goal-calories {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-gray);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
   margin-bottom: 2px;
+  font-variant-numeric: tabular-nums;
 }
 
 .goal-name {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text-dark);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* Weekly Averages */
 .weekly-averages {
   margin-bottom: 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-light);
 }
 
 .averages-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text-dark);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
   margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .averages-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
+  gap: 8px;
 }
 
 .average-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 12px;
+  padding: 10px 12px;
+  background: var(--light-gray);
+  border-radius: 6px;
+  border: 1px solid var(--border-light);
 }
 
 .average-label {
   font-size: 12px;
-  color: var(--text-gray);
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
 .average-value {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
+  font-variant-numeric: tabular-nums;
 }
 
-.average-value.calories { color: var(--primary-green); }
-.average-value.protein { color: var(--primary-blue); }
-.average-value.carbs { color: #f59e0b; }
-.average-value.fats { color: #8b5cf6; }
-.average-value.fiber { color: #059669; }
+.average-value.calories { color: var(--text-primary); }
+.average-value.protein { color: var(--accent-blue); }
+.average-value.carbs { color: var(--accent-orange); }
+.average-value.fats { color: var(--accent-purple); }
+.average-value.fiber { color: var(--accent-green); }
 
 /* Allergy Information */
 .allergy-info {
-  margin-top: 24px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-light);
 }
 
 .allergy-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
 }
 
 .allergy-tag {
-  background: linear-gradient(135deg, #fef3c7, #fde68a);
-  color: #d97706;
-  font-size: 11px;
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 10px;
   font-weight: 600;
-  padding: 6px 10px;
-  border-radius: 12px;
-  border: 1px solid #f59e0b;
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: 1px solid #fde68a;
   display: flex;
   align-items: center;
   gap: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 .allergy-tag::before {
-  content: "⚠️";
-  font-size: 10px;
+  content: "⚠";
+  font-size: 11px;
 }
 
 .allergy-notice {
-  background: linear-gradient(135deg, #fef3c7, #fde68a);
-  border: 1px solid #f59e0b;
-  border-radius: 12px;
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+  border-radius: 8px;
   padding: 12px 16px;
-  margin-bottom: 24px;
-  font-size: 13px;
+  margin-bottom: 20px;
+  font-size: 12px;
   font-weight: 600;
-  color: #d97706;
+  color: #92400e;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.allergy-notice::before {
+  content: "🛡️";
+  font-size: 16px;
 }
 
 /* Daily Plans */
 .daily-plans-wrapper {
-  background: var(--white);
-  border-radius: 24px;
-  padding: 32px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid var(--border-light);
 }
 
 .days-tabs {
   display: flex;
-  gap: 8px;
-  margin-bottom: 32px;
-  background: #f8fafc;
-  padding: 8px;
-  border-radius: 16px;
+  gap: 6px;
+  margin-bottom: 8px;
+  background: var(--light-gray);
+  padding: 4px;
+  border-radius: 8px;
   overflow-x: auto;
+  border: 1px solid var(--border-light);
+  align-items: center;
+}
+
+.tabs-calorie-display {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 8px 24px;
+  background: rgba(16, 185, 129, 0.08);
+  border-radius: 50px;
+  border: 2px solid rgba(16, 185, 129, 0.15);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.tabs-calorie-number {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--black);
+  line-height: 1;
+}
+
+.tabs-calorie-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--medium-gray);
 }
 
 .day-tab {
-  padding: 12px 20px;
-  border-radius: 12px;
+  padding: 8px 16px;
+  border-radius: 6px;
   background: transparent;
   border: none;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
-  color: var(--text-gray);
+  color: var(--text-secondary);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   white-space: nowrap;
-  min-width: 80px;
+  min-width: 70px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 .day-tab:hover {
-  background: rgba(16, 185, 129, 0.1);
-  color: var(--primary-green);
+  background: var(--white);
+  color: var(--text-primary);
 }
 
 .day-tab.active {
-  background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
-  color: white;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  background: var(--black);
+  color: var(--white);
 }
 
 .day-content-container {
@@ -358,7 +413,7 @@ body {
 
 .day-content-panel {
   display: none;
-  animation: fadeIn 0.4s ease;
+  animation: fadeIn 0.3s ease;
 }
 
 .day-content-panel.active {
@@ -368,7 +423,7 @@ body {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -380,59 +435,52 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
-  padding: 20px 24px;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(59, 130, 246, 0.05));
-  border-radius: 16px;
-  border: 1px solid rgba(16, 185, 129, 0.1);
+  margin-bottom: 20px;
+  padding: 16px 20px;
+  background: var(--light-gray);
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
 }
 
 .day-title {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
-  color: var(--text-dark);
-  background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
 }
 
-.day-summary {
+.day-calories-display {
   display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  padding: 12px 40px;
+  background: rgba(16, 185, 129, 0.08);
+  border-radius: 50px;
+  border: 2px solid rgba(16, 185, 129, 0.15);
 }
 
-.summary-chip {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 12px;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 12px;
-  font-size: 13px;
-  font-weight: 600;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+.day-calories-number {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--black);
+  line-height: 1;
 }
 
-.summary-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+.day-calories-label {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--medium-gray);
 }
 
-.summary-dot.calories { background: var(--primary-green); }
-.summary-dot.protein { background: var(--primary-blue); }
-.summary-dot.carbs { background: #f59e0b; }
-.summary-dot.fats { background: #8b5cf6; }
 
 /* Compact Macro Distribution */
 .macro-distribution {
+  margin-top: 0;
   margin-bottom: 24px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(248, 250, 252, 0.6));
-  border-radius: 16px;
-  padding: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: transparent;
+  border-radius: 8px;
+  padding: 0;
+  border: none;
 }
 
 .macro-title {
@@ -443,49 +491,81 @@ body {
 }
 
 .macro-title h4 {
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--black);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: transparent;
+  padding: 0;
+  margin: 0;
 }
 
 .total-calories {
   font-size: 14px;
   font-weight: 700;
-  color: var(--primary-green);
-  background: rgba(16, 185, 129, 0.1);
+  color: var(--text-primary);
+  background: var(--white);
   padding: 6px 12px;
-  border-radius: 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-light);
+  font-variant-numeric: tabular-nums;
 }
 
 .macro-bar {
-  height: 12px;
-  border-radius: 8px;
+  height: 8px;
+  border-radius: 4px;
   overflow: hidden;
   display: flex;
-  margin-bottom: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 12px;
+  background: transparent;
+  border: none;
 }
 
 .macro-legend {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  gap: 10px;
 }
 
 .macro-item {
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 8px;
-  padding: 8px;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 8px;
-  font-size: 12px;
+  padding: 12px 16px;
+  background: var(--white);
+  border-radius: 6px;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.macro-item:hover {
+  background: var(--white);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .macro-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.macro-text {
+  font-size: 14px;
+  color: var(--black);
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.macro-value {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--black);
+  display: inline;
+  margin-right: 4px;
+  font-variant-numeric: tabular-nums;
 }
 
 /* Compact Meals Grid */
@@ -496,32 +576,42 @@ body {
 }
 
 .meal-card {
-  border-radius: 16px;
-  padding: 16px;
+  border-radius: 12px;
+  padding: 20px;
   position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--border-light);
   transition: all 0.3s ease;
-  min-height: 140px;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 400px;
+}
+
+.meal-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: var(--black);
 }
 
 .meal-card.breakfast {
-  background: linear-gradient(135deg, #fef3c7, #fde68a);
-  border-color: #f59e0b;
+  background: var(--white);
+  border-color: var(--border-light);
 }
 
 .meal-card.lunch {
-  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
-  border-color: #10b981;
+  background: var(--white);
+  border-color: var(--border);
 }
 
 .meal-card.dinner {
-  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-  border-color: #3b82f6;
+  background: var(--white);
+  border-color: var(--border);
 }
 
 .meal-card.snacks {
-  background: linear-gradient(135deg, #fce7f3, #fbcfe8);
-  border-color: #ec4899;
+  background: var(--white);
+  border-color: var(--border);
 }
 
 .meal-card:hover {
@@ -529,28 +619,19 @@ body {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
-.meal-card.breakfast:hover {
-  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.2);
-}
-
-.meal-card.lunch:hover {
-  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);
-}
-
-.meal-card.dinner:hover {
-  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
-}
-
-.meal-card.snacks:hover {
-  box-shadow: 0 8px 24px rgba(236, 72, 153, 0.2);
-}
 
 .meal-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.meal-type-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   align-items: flex-start;
-  margin-bottom: 12px;
-  padding-right: 70px;
 }
 
 .meal-type {
@@ -558,52 +639,54 @@ body {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  padding: 4px 8px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: var(--light-gray);
+  color: var(--medium-gray);
+  border: none;
 }
 
-.meal-card.breakfast .meal-type {
-  color: #d97706;
-}
-
-.meal-card.lunch .meal-type {
-  color: #059669;
-}
-
-.meal-card.dinner .meal-type {
-  color: #2563eb;
-}
-
-.meal-card.snacks .meal-type {
-  color: #be185d;
-}
 
 .meal-calories {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 800;
-  color: var(--primary-green);
-  background: rgba(16, 185, 129, 0.1);
-  padding: 4px 8px;
-  border-radius: 8px;
+  color: var(--black);
+  white-space: nowrap;
+}
+
+.meal-calories-chip {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--black);
+  background: rgba(16, 185, 129, 0.08);
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
   white-space: nowrap;
 }
 
 .meal-name {
   font-size: 14px;
-  font-weight: 700;
-  color: var(--text-dark);
-  margin-bottom: 12px;
+  font-weight: 600;
+  color: var(--black);
   line-height: 1.3;
-  padding-right: 70px;
+  margin-bottom: 0;
+  text-align: left;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  min-height: 54px;
+  display: flex;
+  align-items: flex-start;
 }
 
 .meal-macros {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-left: -2px;
 }
 
 .meal-macro {
@@ -627,20 +710,28 @@ body {
   text-transform: uppercase;
 }
 
+.see-ingredients-btn {
+  width: 100%;
+  padding: 10px 16px;
+  margin-top: auto;
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.2s ease;
+}
+
+.see-ingredients-btn:hover {
+  background: var(--dark-gray);
+  transform: translateY(-1px);
+}
+
 .meal-image {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 50px;
-  height: 50px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  border: 2px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  background: rgba(255, 255, 255, 0.9);
+  display: none;
 }
 
 .meal-card.breakfast .meal-image {
@@ -756,11 +847,11 @@ body {
 .macro-title h4 {
   font-size: 18px;
   font-weight: 700;
-  color: var(--text-dark);
-  background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--black);
+  background: transparent;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: var(--black);
+  background-clip: unset;
 }
 
 .total-calories {
@@ -792,10 +883,9 @@ body {
   filter: brightness(1.1);
 }
 
-.macro-segment.protein { background: linear-gradient(135deg, var(--primary-blue), #60a5fa); }
-.macro-segment.carbs { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
-.macro-segment.fats { background: linear-gradient(135deg, #8b5cf6, #a78bfa); }
-.macro-segment.fiber { background: linear-gradient(135deg, #059669, #10b981); }
+.macro-segment.protein { background: #3b82f6; }
+.macro-segment.carbs { background: #f59e0b; }
+.macro-segment.fats { background: #8b5cf6; }
 
 .macro-legend {
   display: grid;
@@ -827,10 +917,10 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.macro-dot.protein { background: linear-gradient(135deg, var(--primary-blue), #60a5fa); }
-.macro-dot.carbs { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
-.macro-dot.fats { background: linear-gradient(135deg, #8b5cf6, #a78bfa); }
-.macro-dot.fiber { background: linear-gradient(135deg, #059669, #10b981); }
+.macro-dot.protein { background: #3b82f6; }
+.macro-dot.carbs { background: #f59e0b; }
+.macro-dot.fats { background: #8b5cf6; }
+.macro-dot.fiber { background: #10b981; }
 
 .macro-text {
   font-size: 14px;
@@ -846,8 +936,8 @@ body {
 /* Meals */
 .meals-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
 }
 
 .meal-card {
@@ -915,18 +1005,24 @@ body {
 }
 
 .meal-name {
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--text-dark);
-  margin-bottom: 20px;
-  line-height: 1.4;
-  padding-right: 90px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--black);
+  line-height: 1.3;
+  margin-bottom: 0;
+  text-align: left;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  min-height: 54px;
+  display: flex;
+  align-items: flex-start;
 }
 
 .meal-macros {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-left: -2px;
 }
 
 .meal-macro {
@@ -949,10 +1045,10 @@ body {
   margin-bottom: 4px;
 }
 
-.meal-macro-value.protein { color: var(--primary-blue); }
-.meal-macro-value.carbs { color: #f59e0b; }
-.meal-macro-value.fats { color: #8b5cf6; }
-.meal-macro-value.fiber { color: #059669; }
+.meal-macro-value.protein { color: var(--black); }
+.meal-macro-value.carbs { color: var(--black); }
+.meal-macro-value.fats { color: var(--black); }
+.meal-macro-value.fiber { color: var(--black); }
 
 .meal-macro-label {
   font-size: 10px;
@@ -1019,6 +1115,147 @@ body {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* Ingredients Modal */
+.ingredients-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 20px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 32px 32px 24px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.modal-header h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--black);
+  margin: 0 0 8px 0;
+}
+
+.modal-calories {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--primary-green);
+  margin: 0;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 32px;
+  color: var(--text-gray);
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--black);
+}
+
+.modal-body {
+  padding: 32px;
+}
+
+.modal-body h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--black);
+  margin: 0 0 16px 0;
+}
+
+.ingredients-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+}
+
+.ingredients-list li {
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: var(--text-dark);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.ingredients-list li:last-child {
+  margin-bottom: 0;
+}
+
+.modal-macros {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.modal-macro-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.modal-macro-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-gray);
+}
+
+.modal-macro-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--black);
+}
 </style>
 </head>
 
@@ -1042,9 +1279,6 @@ body {
         <div class="goal-selection">
           <div class="goal-header">
             <h1 class="goal-title">Select Your Goal</h1>
-            <a href="#" class="print-btn">
-              🖨️ Print Plan
-            </a>
           </div>
           
           <div class="goal-options">
@@ -1187,18 +1421,57 @@ body {
       weightGainOption.dataset.calories = calculatedData.gainCalories;
     }
     
-    // Calculate macros based on calorie target
+    // Calculate macros based on calorie target, body weight, and goal
     function calculateMacros(calories) {
-      // Standard macro distribution: 25% protein, 45% carbs, 30% fats
-      const proteinCalories = calories * 0.25;
-      const carbsCalories = calories * 0.45;
-      const fatsCalories = calories * 0.30;
+      if (!calculatedData) {
+        // Fallback if no data available
+        return {
+          protein: Math.round(calories * 0.25 / 4),
+          carbs: Math.round(calories * 0.45 / 4),
+          fats: Math.round(calories * 0.30 / 9),
+          fiber: Math.round(calories / 100)
+        };
+      }
+      
+      const weight = calculatedData.weight;
+      
+      // Scientifically accurate protein calculation based on body weight and goal
+      let proteinGrams;
+      let fatPercentage;
+      
+      if (currentGoal === 'weight-loss') {
+        // Weight loss: Higher protein to preserve muscle mass
+        proteinGrams = Math.round(weight * 2.2); // 2.2g per kg
+        fatPercentage = 0.25; // 25% of calories from fat
+      } else if (currentGoal === 'weight-gain') {
+        // Weight gain: Moderate protein for muscle building
+        proteinGrams = Math.round(weight * 2.0); // 2.0g per kg
+        fatPercentage = 0.25; // 25% of calories from fat
+      } else {
+        // Maintenance: Standard protein intake
+        proteinGrams = Math.round(weight * 1.8); // 1.8g per kg
+        fatPercentage = 0.30; // 30% of calories from fat
+      }
+      
+      // Calculate calories from protein
+      const proteinCalories = proteinGrams * 4;
+      
+      // Calculate fat grams from percentage
+      const fatCalories = calories * fatPercentage;
+      const fatGrams = Math.round(fatCalories / 9);
+      
+      // Remaining calories go to carbs
+      const remainingCalories = calories - proteinCalories - fatCalories;
+      const carbGrams = Math.round(remainingCalories / 4);
+      
+      // Fiber: approximately 14g per 1000 calories (scientific recommendation)
+      const fiberGrams = Math.round((calories / 1000) * 14);
       
       return {
-        protein: Math.round(proteinCalories / 4), // 4 cal per gram
-        carbs: Math.round(carbsCalories / 4), // 4 cal per gram
-        fats: Math.round(fatsCalories / 9), // 9 cal per gram
-        fiber: Math.round(calories / 100) // Rough estimate: 1g fiber per 100 calories
+        protein: proteinGrams,
+        carbs: carbGrams,
+        fats: fatGrams,
+        fiber: fiberGrams
       };
     }
     
@@ -1381,6 +1654,7 @@ body {
     
     // Generate meal plan based on calorie target
     function generateMealPlan(targetCalories, dayIndex) {
+      // Meal distribution based on optimal nutrient timing
       const breakfastCals = Math.round(targetCalories * 0.25); // 25%
       const lunchCals = Math.round(targetCalories * 0.35); // 35%
       const dinnerCals = Math.round(targetCalories * 0.30); // 30%
@@ -1487,17 +1761,28 @@ body {
       const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
       const targetCalories = getTargetCalories();
       
+      let currentDayCalories = 0;
+      
       days.forEach((day, index) => {
         // Generate slight variation in daily calories (±5%)
         const variation = (Math.random() - 0.5) * 0.1; // ±5%
         const dailyCalories = Math.round(targetCalories * (1 + variation));
         const dayData = generateMealPlan(dailyCalories, index);
         
+        // Store first day's calories for display
+        if (index === 0) {
+          currentDayCalories = dayData.calories;
+        }
+        
         // Create tab button
         const tabButton = document.createElement('button');
         tabButton.className = `day-tab ${index === 0 ? 'active' : ''}`;
         tabButton.textContent = day;
-        tabButton.onclick = () => switchDay(index);
+        tabButton.onclick = () => {
+          switchDay(index);
+          updateCalorieDisplay(dayData.calories);
+        };
+        tabButton.dataset.calories = dayData.calories;
         tabsContainer.appendChild(tabButton);
         
         // Create content panel
@@ -1510,33 +1795,30 @@ body {
           `<div class="allergy-notice">🛡️ Meals filtered for your allergies: ${userAllergies.map(a => a.replace('_', ' ')).join(', ')}</div>` : '';
         
         contentPanel.innerHTML = `
-          <div class="day-header-info">
-            <h3 class="day-title">${day}</h3>
-            <div class="day-summary">
-              <div class="summary-chip">
-                <div class="summary-dot calories"></div>
-                <span>${dayData.calories} cal</span>
-              </div>
-              <div class="summary-chip">
-                <div class="summary-dot protein"></div>
-                <span>${dayData.protein}g protein</span>
-              </div>
-              <div class="summary-chip">
-                <div class="summary-dot carbs"></div>
-                <span>${dayData.carbs}g carbs</span>
-              </div>
-              <div class="summary-chip">
-                <div class="summary-dot fats"></div>
-                <span>${dayData.fats}g fats</span>
-              </div>
-            </div>
-          </div>
           ${allergyNotice}
           ${generateDayContent(dayData)}
         `;
         
         contentContainer.appendChild(contentPanel);
       });
+      
+      // Add calorie display after tabs
+      const calorieDisplay = document.createElement('div');
+      calorieDisplay.className = 'tabs-calorie-display';
+      calorieDisplay.id = 'tabsCalorieDisplay';
+      calorieDisplay.innerHTML = `
+        <span class="tabs-calorie-number">${currentDayCalories}</span>
+        <span class="tabs-calorie-label">calories</span>
+      `;
+      tabsContainer.appendChild(calorieDisplay);
+    }
+    
+    // Update calorie display when switching days
+    function updateCalorieDisplay(calories) {
+      const display = document.getElementById('tabsCalorieDisplay');
+      if (display) {
+        display.querySelector('.tabs-calorie-number').textContent = calories;
+      }
     }
     
     // Switch between days
@@ -1554,40 +1836,46 @@ body {
 
     // Generate content for each day
     function generateDayContent(dayData) {
-      const proteinPercent = Math.round((dayData.protein * 4 / dayData.calories) * 100);
-      const carbsPercent = Math.round((dayData.carbs * 4 / dayData.calories) * 100);
-      const fatsPercent = Math.round((dayData.fats * 9 / dayData.calories) * 100);
-      const fiberPercent = 100 - proteinPercent - carbsPercent - fatsPercent;
+      // Calculate macro percentages for visual display
+      const totalCalories = dayData.calories;
+      const proteinPercent = Math.round((dayData.protein * 4 / totalCalories) * 100);
+      const carbsPercent = Math.round((dayData.carbs * 4 / totalCalories) * 100);
+      const fatsPercent = Math.round((dayData.fats * 9 / totalCalories) * 100);
+      
+      // Ensure percentages add up to 100% (adjust carbs if needed due to rounding)
+      const totalPercent = proteinPercent + carbsPercent + fatsPercent;
+      const adjustedCarbsPercent = carbsPercent + (100 - totalPercent);
 
       return `
         <div class="macro-distribution">
           <div class="macro-title">
             <h4>Macro Distribution</h4>
-            <span class="total-calories">${dayData.calories} calories</span>
+            <a href="#" class="print-btn" onclick="window.print(); return false;">
+              🖨️ Print Plan
+            </a>
           </div>
           <div class="macro-bar">
             <div class="macro-segment protein" style="width: ${proteinPercent}%"></div>
-            <div class="macro-segment carbs" style="width: ${carbsPercent}%"></div>
+            <div class="macro-segment carbs" style="width: ${adjustedCarbsPercent}%"></div>
             <div class="macro-segment fats" style="width: ${fatsPercent}%"></div>
-            <div class="macro-segment fiber" style="width: ${fiberPercent}%"></div>
           </div>
           <div class="macro-legend">
             <div class="macro-item">
               <div class="macro-dot protein"></div>
               <div class="macro-text">
-                <span class="macro-value">${dayData.protein}g</span> Protein
+                <span class="macro-value">${dayData.protein}g</span> Protein (${proteinPercent}%)
               </div>
             </div>
             <div class="macro-item">
               <div class="macro-dot carbs"></div>
               <div class="macro-text">
-                <span class="macro-value">${dayData.carbs}g</span> Carbs
+                <span class="macro-value">${dayData.carbs}g</span> Carbs (${adjustedCarbsPercent}%)
               </div>
             </div>
             <div class="macro-item">
               <div class="macro-dot fats"></div>
               <div class="macro-text">
-                <span class="macro-value">${dayData.fats}g</span> Fats
+                <span class="macro-value">${dayData.fats}g</span> Fats (${fatsPercent}%)
               </div>
             </div>
             <div class="macro-item">
@@ -1616,11 +1904,10 @@ body {
       
       return `
         <div class="meal-card ${mealClass}">
-          <div class="meal-image">${meal.image}</div>
+          <div class="meal-calories-chip">${meal.calories} cal</div>
           ${isAllergySafe && userAllergies.length > 0 ? '<div class="allergy-safe-badge">✓ Safe</div>' : ''}
           <div class="meal-header">
             <div class="meal-type">${type}</div>
-            <div class="meal-calories">${meal.calories} cal</div>
           </div>
           <div class="meal-name">${meal.name}</div>
           <div class="meal-macros">
@@ -1641,6 +1928,9 @@ body {
               <div class="meal-macro-label">Fiber</div>
             </div>
           </div>
+          <button class="see-ingredients-btn" onclick='showIngredientsModal(${JSON.stringify(meal)})'>
+            See Ingredients
+          </button>
         </div>
       `;
     }
@@ -1676,6 +1966,273 @@ body {
     window.addEventListener('load', function() {
       loadCalculationData();
     });
+    
+    // Generate scientifically accurate ingredients based on macros
+    function generateIngredients(meal) {
+      const ingredients = [];
+      const mealName = meal.name.toLowerCase();
+      const userAllergies = calculatedData?.allergies || [];
+      
+      // Track remaining macros to distribute
+      let remainingProtein = meal.protein;
+      let remainingCarbs = meal.carbs;
+      let remainingFats = meal.fats;
+      let remainingFiber = meal.fiber;
+      
+      // Helper function to check if allergen-safe
+      const isSafe = (allergen) => !userAllergies.includes(allergen);
+      
+      // PROTEIN SOURCES (prioritize based on meal name)
+      if (remainingProtein > 0) {
+        // Eggs (6g protein, 5g fat per egg)
+        if (mealName.includes('egg') && isSafe('eggs')) {
+          const eggs = Math.round(remainingProtein / 6);
+          ingredients.push(`${eggs} large egg${eggs > 1 ? 's' : ''} (${eggs * 6}g protein, ${eggs * 5}g fat)`);
+          remainingProtein -= eggs * 6;
+          remainingFats -= eggs * 5;
+        }
+        
+        // Chicken breast (7g protein, 1g fat per oz)
+        else if (mealName.includes('chicken') && remainingProtein >= 20) {
+          const oz = Math.round(remainingProtein / 7);
+          ingredients.push(`${oz} oz chicken breast (${oz * 7}g protein, ${oz * 1}g fat)`);
+          remainingProtein -= oz * 7;
+          remainingFats -= oz * 1;
+        }
+        
+        // Beef/Steak (7g protein, 5g fat per oz for lean cuts)
+        else if ((mealName.includes('beef') || mealName.includes('steak')) && remainingProtein >= 20) {
+          const oz = Math.round(remainingProtein / 7);
+          ingredients.push(`${oz} oz lean beef (${oz * 7}g protein, ${oz * 5}g fat)`);
+          remainingProtein -= oz * 7;
+          remainingFats -= oz * 5;
+        }
+        
+        // Fish/Salmon (7g protein, 3g fat per oz)
+        else if ((mealName.includes('fish') || mealName.includes('salmon') || mealName.includes('cod') || mealName.includes('tuna')) && remainingProtein >= 20) {
+          const oz = Math.round(remainingProtein / 7);
+          const fishType = mealName.includes('salmon') ? 'salmon' : mealName.includes('cod') ? 'cod' : mealName.includes('tuna') ? 'tuna' : 'fish';
+          ingredients.push(`${oz} oz ${fishType} (${oz * 7}g protein, ${oz * 3}g fat)`);
+          remainingProtein -= oz * 7;
+          remainingFats -= oz * 3;
+        }
+        
+        // Tofu (8g protein, 4g fat per 100g/3.5oz)
+        else if (mealName.includes('tofu') && remainingProtein >= 15) {
+          const servings = Math.round(remainingProtein / 8);
+          ingredients.push(`${servings * 3.5} oz tofu (${servings * 8}g protein, ${servings * 4}g fat)`);
+          remainingProtein -= servings * 8;
+          remainingFats -= servings * 4;
+        }
+        
+        // Greek yogurt (10g protein, 0g fat per 100g for non-fat)
+        else if (mealName.includes('yogurt') && isSafe('milk')) {
+          const servings = Math.round(remainingProtein / 10);
+          ingredients.push(`${servings * 100}g Greek yogurt (${servings * 10}g protein)`);
+          remainingProtein -= servings * 10;
+        }
+        
+        // Cheese (7g protein, 9g fat per oz)
+        else if (mealName.includes('cheese') && isSafe('milk')) {
+          const oz = Math.round(remainingProtein / 7);
+          ingredients.push(`${oz} oz cheese (${oz * 7}g protein, ${oz * 9}g fat)`);
+          remainingProtein -= oz * 7;
+          remainingFats -= oz * 9;
+        }
+        
+        // Default protein source if no specific match
+        else if (remainingProtein >= 15) {
+          const oz = Math.round(remainingProtein / 7);
+          ingredients.push(`${oz} oz lean protein source (${oz * 7}g protein)`);
+          remainingProtein -= oz * 7;
+        }
+      }
+      
+      // CARBOHYDRATE SOURCES
+      if (remainingCarbs > 0) {
+        // Rice (45g carbs, 2g fiber per cup cooked)
+        if (mealName.includes('rice') && remainingCarbs >= 30) {
+          const cups = Math.round(remainingCarbs / 45 * 10) / 10;
+          ingredients.push(`${cups} cup${cups > 1 ? 's' : ''} cooked rice (${Math.round(cups * 45)}g carbs, ${Math.round(cups * 2)}g fiber)`);
+          remainingCarbs -= cups * 45;
+          remainingFiber -= cups * 2;
+        }
+        
+        // Pasta (40g carbs, 2g fiber per cup cooked)
+        else if (mealName.includes('pasta') && remainingCarbs >= 30) {
+          const cups = Math.round(remainingCarbs / 40 * 10) / 10;
+          ingredients.push(`${cups} cup${cups > 1 ? 's' : ''} cooked pasta (${Math.round(cups * 40)}g carbs, ${Math.round(cups * 2)}g fiber)`);
+          remainingCarbs -= cups * 40;
+          remainingFiber -= cups * 2;
+        }
+        
+        // Bread (15g carbs, 2g fiber per slice)
+        else if ((mealName.includes('bread') || mealName.includes('toast') || mealName.includes('sandwich')) && remainingCarbs >= 10) {
+          const slices = Math.round(remainingCarbs / 15);
+          ingredients.push(`${slices} slice${slices > 1 ? 's' : ''} whole wheat bread (${slices * 15}g carbs, ${slices * 2}g fiber)`);
+          remainingCarbs -= slices * 15;
+          remainingFiber -= slices * 2;
+        }
+        
+        // Potato (30g carbs, 3g fiber per medium potato)
+        else if (mealName.includes('potato') && remainingCarbs >= 20) {
+          const potatoes = Math.round(remainingCarbs / 30);
+          ingredients.push(`${potatoes} medium potato${potatoes > 1 ? 'es' : ''} (${potatoes * 30}g carbs, ${potatoes * 3}g fiber)`);
+          remainingCarbs -= potatoes * 30;
+          remainingFiber -= potatoes * 3;
+        }
+        
+        // Oats (27g carbs, 4g fiber per 1/2 cup dry)
+        else if (mealName.includes('oat') && remainingCarbs >= 20) {
+          const servings = Math.round(remainingCarbs / 27);
+          ingredients.push(`${servings * 0.5} cup${servings > 1 ? 's' : ''} oats (${servings * 27}g carbs, ${servings * 4}g fiber)`);
+          remainingCarbs -= servings * 27;
+          remainingFiber -= servings * 4;
+        }
+        
+        // Quinoa (39g carbs, 5g fiber per cup cooked)
+        else if (mealName.includes('quinoa') && remainingCarbs >= 30) {
+          const cups = Math.round(remainingCarbs / 39 * 10) / 10;
+          ingredients.push(`${cups} cup${cups > 1 ? 's' : ''} cooked quinoa (${Math.round(cups * 39)}g carbs, ${Math.round(cups * 5)}g fiber)`);
+          remainingCarbs -= cups * 39;
+          remainingFiber -= cups * 5;
+        }
+        
+        // Beans (20g carbs, 6g fiber per 1/2 cup)
+        else if ((mealName.includes('bean') || mealName.includes('lentil')) && remainingCarbs >= 15) {
+          const servings = Math.round(remainingCarbs / 20);
+          ingredients.push(`${servings * 0.5} cup${servings > 1 ? 's' : ''} beans/lentils (${servings * 20}g carbs, ${servings * 6}g fiber)`);
+          remainingCarbs -= servings * 20;
+          remainingFiber -= servings * 6;
+        }
+        
+        // Fruit (15g carbs, 2g fiber per serving)
+        else if (mealName.includes('fruit') || mealName.includes('berry') || mealName.includes('apple') || mealName.includes('banana')) {
+          const servings = Math.round(remainingCarbs / 15);
+          ingredients.push(`${servings} serving${servings > 1 ? 's' : ''} fresh fruit (${servings * 15}g carbs, ${servings * 2}g fiber)`);
+          remainingCarbs -= servings * 15;
+          remainingFiber -= servings * 2;
+        }
+        
+        // Default carb source
+        else if (remainingCarbs >= 10) {
+          ingredients.push(`Complex carbohydrate source (${Math.round(remainingCarbs)}g carbs)`);
+          remainingCarbs = 0;
+        }
+      }
+      
+      // HEALTHY FATS
+      if (remainingFats > 5) {
+        // Avocado (15g fat, 7g fiber per half)
+        if (mealName.includes('avocado')) {
+          const halves = Math.round(remainingFats / 15 * 2) / 2;
+          ingredients.push(`${halves} avocado (${Math.round(halves * 15)}g fat, ${Math.round(halves * 7)}g fiber)`);
+          remainingFats -= halves * 15;
+          remainingFiber -= halves * 7;
+        }
+        
+        // Nuts (14g fat, 3g fiber per oz)
+        else if ((mealName.includes('nut') || mealName.includes('almond') || mealName.includes('walnut')) && isSafe('tree_nuts')) {
+          const oz = Math.round(remainingFats / 14);
+          ingredients.push(`${oz} oz mixed nuts (${oz * 14}g fat, ${oz * 3}g fiber)`);
+          remainingFats -= oz * 14;
+          remainingFiber -= oz * 3;
+        }
+        
+        // Olive oil (14g fat per tbsp)
+        else if (remainingFats >= 10) {
+          const tbsp = Math.round(remainingFats / 14);
+          ingredients.push(`${tbsp} tbsp olive oil (${tbsp * 14}g fat)`);
+          remainingFats -= tbsp * 14;
+        }
+      }
+      
+      // VEGETABLES (for remaining fiber and micronutrients)
+      if (remainingFiber > 2 || ingredients.length < 3) {
+        const fiberAmount = Math.max(remainingFiber, 3);
+        ingredients.push(`Mixed vegetables (${Math.round(fiberAmount)}g fiber, vitamins & minerals)`);
+      }
+      
+      // If still no ingredients (edge case), add generic ones
+      if (ingredients.length === 0) {
+        ingredients.push(`Lean protein source (${meal.protein}g protein)`);
+        ingredients.push(`Complex carbohydrates (${meal.carbs}g carbs)`);
+        ingredients.push(`Healthy fats (${meal.fats}g fat)`);
+        if (meal.fiber > 0) ingredients.push(`Fiber-rich foods (${meal.fiber}g fiber)`);
+      }
+      
+      return ingredients;
+    }
+    
+    // Show ingredients modal
+    function showIngredientsModal(meal) {
+      const modal = document.getElementById('ingredientsModal');
+      const modalTitle = document.getElementById('modalMealName');
+      const modalCalories = document.getElementById('modalCalories');
+      const ingredientsList = document.getElementById('ingredientsList');
+      const modalMacros = document.getElementById('modalMacros');
+      
+      modalTitle.textContent = meal.name;
+      modalCalories.textContent = `${meal.calories} calories`;
+      
+      // Generate and display ingredients
+      const ingredients = generateIngredients(meal);
+      ingredientsList.innerHTML = ingredients.map(ing => `<li>${ing}</li>`).join('');
+      
+      // Display macros
+      modalMacros.innerHTML = `
+        <div class="modal-macro-item">
+          <span class="modal-macro-label">Protein:</span>
+          <span class="modal-macro-value">${meal.protein}g</span>
+        </div>
+        <div class="modal-macro-item">
+          <span class="modal-macro-label">Carbs:</span>
+          <span class="modal-macro-value">${meal.carbs}g</span>
+        </div>
+        <div class="modal-macro-item">
+          <span class="modal-macro-label">Fats:</span>
+          <span class="modal-macro-value">${meal.fats}g</span>
+        </div>
+        <div class="modal-macro-item">
+          <span class="modal-macro-label">Fiber:</span>
+          <span class="modal-macro-value">${meal.fiber}g</span>
+        </div>
+      `;
+      
+      modal.style.display = 'flex';
+    }
+    
+    // Close modal
+    function closeIngredientsModal() {
+      document.getElementById('ingredientsModal').style.display = 'none';
+    }
+    
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      const modal = document.getElementById('ingredientsModal');
+      if (event.target === modal) {
+        closeIngredientsModal();
+      }
+    }
   </script>
+  
+  <!-- Ingredients Modal -->
+  <div id="ingredientsModal" class="ingredients-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h2 id="modalMealName"></h2>
+          <p id="modalCalories" class="modal-calories"></p>
+        </div>
+        <button class="modal-close" onclick="closeIngredientsModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h3>Ingredients</h3>
+        <ul id="ingredientsList" class="ingredients-list"></ul>
+        <h3>Nutritional Information</h3>
+        <div id="modalMacros" class="modal-macros"></div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
