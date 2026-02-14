@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Meal Plans - NutriFit</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Personalized meal plans based on your calorie goals with NutriFit.">
+<meta name="keywords" content="meal plans, nutrition, diet, calorie tracking, healthy eating">
+<meta name="author" content="NutriFit">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary-green: #10b981;
+  --primary-blue: #3b82f6;
+  --text-dark: #1f2937;
+  --text-gray: #6b7280;
+  --text-light: #9ca3af;
+  --bg-light: #f9fafb;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background: var(--bg-light);
+}
+
+/* Navigation */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  padding: 16px 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--primary-green);
+  text-decoration: none;
+}
+
+.logo::before {
+  content: "⚡";
+  font-size: 24px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-gray);
+  font-weight: 500;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--text-dark);
+}
+
+/* Main Content */
+.meal-plans-section {
+  padding: 100px 24px 60px;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0fdf4 100%);
+  min-height: 100vh;
+}
+
+.meal-plans-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.meal-plans-grid {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* Goal Selection */
+.goal-selection {
+  background: var(--white);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 120px;
+  height: fit-content;
+}
+
+.goal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.goal-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.print-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--bg-light);
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-gray);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.print-btn:hover {
+  background: #e5e7eb;
+}
+
+.goal-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.goal-option {
+  padding: 16px 20px;
+  border-radius: 16px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.goal-option.weight-loss {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+}
+
+.goal-option.maintain {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  border-color: var(--primary-green);
+}
+
+.goal-option.weight-gain {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+}
+
+.goal-option:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.goal-option.active {
+  border-color: var(--primary-green);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+}
+
+.goal-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.goal-details {
+  flex: 1;
+}
+
+.goal-calories {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-gray);
+  margin-bottom: 2px;
+}
+
+.goal-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+/* Weekly Averages */
+.weekly-averages {
+  margin-bottom: 0;
+}
+
+.averages-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 16px;
+}
+
+.averages-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.average-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+}
+
+.average-label {
+  font-size: 12px;
+  color: var(--text-gray);
+  font-weight: 500;
+}
+
+.average-value {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.average-value.calories { color: var(--primary-green); }
+.average-value.protein { color: var(--primary-blue); }
+.average-value.carbs { color: #f59e0b; }
+.average-value.fats { color: #8b5cf6; }
+.average-value.fiber { color: #059669; }
+
+/* Allergy Information */
+.allergy-info {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.allergy-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.allergy-tag {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  color: #d97706;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 12px;
+  border: 1px solid #f59e0b;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.allergy-tag::before {
+  content: "⚠️";
+  font-size: 10px;
+}
+
+.allergy-notice {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border: 1px solid #f59e0b;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #d97706;
+  text-align: center;
+}
+
+/* Daily Plans */
+.daily-plans-wrapper {
+  background: var(--white);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.days-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+  background: #f8fafc;
+  padding: 8px;
+  border-radius: 16px;
+  overflow-x: auto;
+}
+
+.day-tab {
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-gray);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  min-width: 80px;
+}
+
+.day-tab:hover {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--primary-green);
+}
+
+.day-tab.active {
+  background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
+  color: white;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.day-content-container {
+  min-height: 600px;
+}
+
+.day-content-panel {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.day-content-panel.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.day-header-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(59, 130, 246, 0.05));
+  border-radius: 16px;
+  border: 1px solid rgba(16, 185, 129, 0.1);
+}
+
+.day-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-dark);
+  background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.day-summary {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.summary-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.summary-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.summary-dot.calories { background: var(--primary-green); }
+.summary-dot.protein { background: var(--primary-blue); }
+.summary-dot.carbs { background: #f59e0b; }
+.summary-dot.fats { background: #8b5cf6; }
+
+/* Compact Macro Distribution */
+.macro-distribution {
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(248, 250, 252, 0.6));
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.macro-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.macro-title h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.total-calories {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary-green);
+  background: rgba(16, 185, 129, 0.1);
+  padding: 6px 12px;
+  border-radius: 12px;
+}
+
+.macro-bar {
+  height: 12px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.macro-legend {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.macro-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.macro-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+/* Compact Meals Grid */
+.meals-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.meal-card {
+  border-radius: 16px;
+  padding: 16px;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+  min-height: 140px;
+}
+
+.meal-card.breakfast {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border-color: #f59e0b;
+}
+
+.meal-card.lunch {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  border-color: #10b981;
+}
+
+.meal-card.dinner {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+  border-color: #3b82f6;
+}
+
+.meal-card.snacks {
+  background: linear-gradient(135deg, #fce7f3, #fbcfe8);
+  border-color: #ec4899;
+}
+
+.meal-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.meal-card.breakfast:hover {
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.2);
+}
+
+.meal-card.lunch:hover {
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);
+}
+
+.meal-card.dinner:hover {
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
+}
+
+.meal-card.snacks:hover {
+  box-shadow: 0 8px 24px rgba(236, 72, 153, 0.2);
+}
+
+.meal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  padding-right: 70px;
+}
+
+.meal-type {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.meal-card.breakfast .meal-type {
+  color: #d97706;
+}
+
+.meal-card.lunch .meal-type {
+  color: #059669;
+}
+
+.meal-card.dinner .meal-type {
+  color: #2563eb;
+}
+
+.meal-card.snacks .meal-type {
+  color: #be185d;
+}
+
+.meal-calories {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--primary-green);
+  background: rgba(16, 185, 129, 0.1);
+  padding: 4px 8px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.meal-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  line-height: 1.3;
+  padding-right: 70px;
+}
+
+.meal-macros {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.meal-macro {
+  text-align: center;
+  padding: 6px 4px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 6px;
+  font-size: 10px;
+}
+
+.meal-macro-value {
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.meal-macro-label {
+  font-size: 8px;
+  color: var(--text-gray);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.meal-image {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.meal-card.breakfast .meal-image {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1));
+}
+
+.meal-card.lunch .meal-image {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+}
+
+.meal-card.dinner .meal-image {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1));
+}
+
+.meal-card.snacks .meal-image {
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(190, 24, 93, 0.1));
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .meal-plans-grid {
+    grid-template-columns: 350px 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 968px) {
+  .meal-plans-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .goal-selection {
+    position: static;
+    margin-bottom: 24px;
+  }
+  
+  .goal-options {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  
+  .goal-option {
+    flex-direction: column;
+    text-align: center;
+    padding: 12px;
+    gap: 8px;
+  }
+  
+  .averages-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .days-tabs {
+    gap: 4px;
+    padding: 6px;
+  }
+  
+  .day-tab {
+    padding: 8px 12px;
+    font-size: 12px;
+    min-width: 60px;
+  }
+  
+  .meals-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .macro-legend {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .day-summary {
+    gap: 8px;
+  }
+  
+  .summary-chip {
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+  
+  .goal-options {
+    grid-template-columns: 1fr;
+  }
+  
+  .goal-option {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
+/* Macro Distribution */
+.macro-distribution {
+  margin-bottom: 32px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(248, 250, 252, 0.6));
+  border-radius: 20px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+.macro-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.macro-title h4 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-dark);
+  background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.total-calories {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary-green);
+  background: rgba(16, 185, 129, 0.1);
+  padding: 8px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.macro-bar {
+  height: 16px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.macro-segment {
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.macro-segment:hover {
+  filter: brightness(1.1);
+}
+
+.macro-segment.protein { background: linear-gradient(135deg, var(--primary-blue), #60a5fa); }
+.macro-segment.carbs { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
+.macro-segment.fats { background: linear-gradient(135deg, #8b5cf6, #a78bfa); }
+.macro-segment.fiber { background: linear-gradient(135deg, #059669, #10b981); }
+
+.macro-legend {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.macro-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.macro-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.macro-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.macro-dot.protein { background: linear-gradient(135deg, var(--primary-blue), #60a5fa); }
+.macro-dot.carbs { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
+.macro-dot.fats { background: linear-gradient(135deg, #8b5cf6, #a78bfa); }
+.macro-dot.fiber { background: linear-gradient(135deg, #059669, #10b981); }
+
+.macro-text {
+  font-size: 14px;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.macro-value {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* Meals */
+.meals-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.meal-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.8));
+  border-radius: 20px;
+  padding: 24px;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.meal-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-green), var(--primary-blue));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.meal-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9));
+}
+
+.meal-card:hover::before {
+  opacity: 1;
+}
+
+.meal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  padding-right: 80px;
+}
+
+.meal-type {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 6px 12px;
+  background: rgba(107, 114, 128, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(107, 114, 128, 0.1);
+}
+
+.meal-calories {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--primary-green);
+  background: rgba(16, 185, 129, 0.1);
+  padding: 6px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  white-space: nowrap;
+}
+
+.meal-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+  line-height: 1.4;
+  padding-right: 90px;
+}
+
+.meal-macros {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.meal-macro {
+  text-align: center;
+  padding: 12px 8px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.meal-macro:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.meal-macro-value {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.meal-macro-value.protein { color: var(--primary-blue); }
+.meal-macro-value.carbs { color: #f59e0b; }
+.meal-macro-value.fats { color: #8b5cf6; }
+.meal-macro-value.fiber { color: #059669; }
+
+.meal-macro-label {
+  font-size: 10px;
+  color: var(--text-gray);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.meal-image {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.meal-card:hover .meal-image {
+  transform: scale(1.05) rotate(5deg);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.allergy-safe-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  z-index: 15;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .goal-options {
+    grid-template-columns: 1fr;
+  }
+  
+  .averages-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .meals-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .macro-legend {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+</style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">NutriFit</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="calculator.html">Calculator</a></li>
+        <li><a href="meal-plans.html" class="active">Meal Plans</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <section class="meal-plans-section">
+    <div class="meal-plans-container">
+      <div class="meal-plans-grid">
+
+        <div class="goal-selection">
+          <div class="goal-header">
+            <h1 class="goal-title">Select Your Goal</h1>
+            <a href="#" class="print-btn">
+              🖨️ Print Plan
+            </a>
+          </div>
+          
+          <div class="goal-options">
+            <div class="goal-option weight-loss" data-calories="2056">
+              <div class="goal-icon">📉</div>
+              <div class="goal-details">
+                <div class="goal-calories">2056 cal/day</div>
+                <div class="goal-name">Weight Loss</div>
+              </div>
+            </div>
+            <div class="goal-option maintain active" data-calories="2556">
+              <div class="goal-icon">➖</div>
+              <div class="goal-details">
+                <div class="goal-calories">2556 cal/day</div>
+                <div class="goal-name">Maintain</div>
+              </div>
+            </div>
+            <div class="goal-option weight-gain" data-calories="3056">
+              <div class="goal-icon">📈</div>
+              <div class="goal-details">
+                <div class="goal-calories">3056 cal/day</div>
+                <div class="goal-name">Weight Gain</div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="weekly-averages">
+            <h2 class="averages-title">Weekly Averages</h2>
+            <div class="averages-grid">
+              <div class="average-item">
+                <div class="average-label">Avg Calories</div>
+                <div class="average-value calories">2186</div>
+              </div>
+              <div class="average-item">
+                <div class="average-label">Avg Protein</div>
+                <div class="average-value protein">121g</div>
+              </div>
+              <div class="average-item">
+                <div class="average-label">Avg Carbs</div>
+                <div class="average-value carbs">234g</div>
+              </div>
+              <div class="average-item">
+                <div class="average-label">Avg Fats</div>
+                <div class="average-value fats">80g</div>
+              </div>
+              <div class="average-item">
+                <div class="average-label">Avg Fiber</div>
+                <div class="average-value fiber">27g</div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="allergy-info" id="allergyInfo" style="display: none;">
+            <h2 class="averages-title">Allergy Considerations</h2>
+            <div class="allergy-list" id="allergyList">
+
+            </div>
+          </div>
+        </div>
+
+
+        <div class="daily-plans-wrapper">
+          <div class="days-tabs" id="daysTabs">
+
+          </div>
+          
+          <div class="day-content-container" id="dayContentContainer">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Get calculated data from BMI calculator
+    let calculatedData = null;
+    let currentGoal = 'maintain'; // default
+    
+    // Load calculation data
+    function loadCalculationData() {
+      const stored = localStorage.getItem('nutrifit-calculations');
+      if (stored) {
+        calculatedData = JSON.parse(stored);
+        updateGoalOptions();
+        updateWeeklyAverages();
+        updateAllergyInfo();
+        generateDailyPlans();
+      } else {
+        // Redirect to calculator if no data
+        alert('Please complete the BMI calculator first to get personalized meal plans.');
+        window.location.href = 'calculator.html';
+      }
+    }
+    
+    // Update allergy information display
+    function updateAllergyInfo() {
+      if (!calculatedData || !calculatedData.allergies || calculatedData.allergies.length === 0) {
+        document.getElementById('allergyInfo').style.display = 'none';
+        return;
+      }
+      
+      const allergyNames = {
+        'milk': 'Milk/Dairy',
+        'eggs': 'Eggs',
+        'peanuts': 'Peanuts',
+        'tree_nuts': 'Tree Nuts',
+        'fish': 'Fish',
+        'shellfish': 'Shellfish',
+        'wheat': 'Wheat/Gluten',
+        'soy': 'Soy',
+        'sesame': 'Sesame'
+      };
+      
+      const allergyList = document.getElementById('allergyList');
+      allergyList.innerHTML = calculatedData.allergies
+        .map(allergy => `<div class="allergy-tag">${allergyNames[allergy] || allergy}</div>`)
+        .join('');
+      
+      document.getElementById('allergyInfo').style.display = 'block';
+    }
+    
+    // Update goal options with real calculated calories
+    function updateGoalOptions() {
+      if (!calculatedData) return;
+      
+      const weightLossOption = document.querySelector('.goal-option.weight-loss');
+      const maintainOption = document.querySelector('.goal-option.maintain');
+      const weightGainOption = document.querySelector('.goal-option.weight-gain');
+      
+      weightLossOption.querySelector('.goal-calories').textContent = `${calculatedData.lossCalories} cal/day`;
+      weightLossOption.dataset.calories = calculatedData.lossCalories;
+      
+      maintainOption.querySelector('.goal-calories').textContent = `${calculatedData.tdee} cal/day`;
+      maintainOption.dataset.calories = calculatedData.tdee;
+      
+      weightGainOption.querySelector('.goal-calories').textContent = `${calculatedData.gainCalories} cal/day`;
+      weightGainOption.dataset.calories = calculatedData.gainCalories;
+    }
+    
+    // Calculate macros based on calorie target
+    function calculateMacros(calories) {
+      // Standard macro distribution: 25% protein, 45% carbs, 30% fats
+      const proteinCalories = calories * 0.25;
+      const carbsCalories = calories * 0.45;
+      const fatsCalories = calories * 0.30;
+      
+      return {
+        protein: Math.round(proteinCalories / 4), // 4 cal per gram
+        carbs: Math.round(carbsCalories / 4), // 4 cal per gram
+        fats: Math.round(fatsCalories / 9), // 9 cal per gram
+        fiber: Math.round(calories / 100) // Rough estimate: 1g fiber per 100 calories
+      };
+    }
+    
+    // Update weekly averages with real data
+    function updateWeeklyAverages() {
+      if (!calculatedData) return;
+      
+      const targetCalories = getTargetCalories();
+      const macros = calculateMacros(targetCalories);
+      
+      document.querySelector('.average-value.calories').textContent = targetCalories;
+      document.querySelector('.average-value.protein').textContent = `${macros.protein}g`;
+      document.querySelector('.average-value.carbs').textContent = `${macros.carbs}g`;
+      document.querySelector('.average-value.fats').textContent = `${macros.fats}g`;
+      document.querySelector('.average-value.fiber').textContent = `${macros.fiber}g`;
+    }
+    
+    // Get target calories based on current goal
+    function getTargetCalories() {
+      if (!calculatedData) return 2000;
+      
+      switch(currentGoal) {
+        case 'weight-loss': return calculatedData.lossCalories;
+        case 'weight-gain': return calculatedData.gainCalories;
+        default: return calculatedData.tdee;
+      }
+    }
+    
+    // Real meal database based on calorie targets with allergen information
+    const mealDatabase = {
+      breakfast: {
+        low: [
+          { name: "Greek Yogurt with Berries", calories: 280, protein: 20, carbs: 35, fats: 6, fiber: 5, image: "🥣", allergens: ["milk"] },
+          { name: "Oatmeal with Banana", calories: 320, protein: 12, carbs: 58, fats: 6, fiber: 8, image: "🥣", allergens: [] },
+          { name: "Scrambled Eggs with Toast", calories: 350, protein: 18, carbs: 28, fats: 18, fiber: 4, image: "🍳", allergens: ["eggs", "wheat"] },
+          { name: "Cottage Cheese with Fruit", calories: 290, protein: 22, carbs: 32, fats: 8, fiber: 4, image: "🥛", allergens: ["milk"] },
+          { name: "Smoothie Bowl", calories: 310, protein: 15, carbs: 45, fats: 10, fiber: 8, image: "🥤", allergens: [] },
+          { name: "Egg White Omelet", calories: 270, protein: 24, carbs: 15, fats: 12, fiber: 3, image: "🍳", allergens: ["eggs"] },
+          { name: "Chia Pudding", calories: 300, protein: 14, carbs: 35, fats: 12, fiber: 12, image: "🥣", allergens: [] },
+          { name: "Rice Cakes with Avocado", calories: 290, protein: 8, carbs: 42, fats: 12, fiber: 8, image: "🥑", allergens: [] },
+          { name: "Quinoa Breakfast Bowl", calories: 310, protein: 12, carbs: 48, fats: 8, fiber: 6, image: "🥣", allergens: [] },
+          { name: "Fruit Smoothie Bowl", calories: 280, protein: 8, carbs: 52, fats: 6, fiber: 8, image: "🥤", allergens: [] },
+          { name: "Oat Porridge with Berries", calories: 300, protein: 10, carbs: 55, fats: 6, fiber: 10, image: "🥣", allergens: [] }
+        ],
+        medium: [
+          { name: "Protein Pancakes with Syrup", calories: 480, protein: 28, carbs: 62, fats: 12, fiber: 7, image: "🥞", allergens: ["eggs", "milk", "wheat"] },
+          { name: "Avocado Toast with Eggs", calories: 420, protein: 22, carbs: 35, fats: 24, fiber: 12, image: "🥑", allergens: ["eggs", "wheat"] },
+          { name: "Smoothie Bowl with Granola", calories: 450, protein: 25, carbs: 55, fats: 15, fiber: 10, image: "🥣", allergens: ["tree_nuts"] },
+          { name: "French Toast", calories: 460, protein: 20, carbs: 58, fats: 16, fiber: 6, image: "🍞", allergens: ["eggs", "milk", "wheat"] },
+          { name: "Breakfast Burrito", calories: 440, protein: 24, carbs: 48, fats: 18, fiber: 8, image: "🌯", allergens: ["eggs", "milk", "wheat"] },
+          { name: "Bagel with Cream Cheese", calories: 410, protein: 16, carbs: 52, fats: 16, fiber: 4, image: "🥯", allergens: ["milk", "wheat"] },
+          { name: "Waffles with Berries", calories: 470, protein: 18, carbs: 65, fats: 14, fiber: 8, image: "🧇", allergens: ["eggs", "milk", "wheat"] },
+          { name: "Coconut Yogurt Parfait", calories: 430, protein: 18, carbs: 52, fats: 18, fiber: 8, image: "🥥", allergens: [] },
+          { name: "Sweet Potato Hash", calories: 450, protein: 16, carbs: 58, fats: 16, fiber: 10, image: "🍠", allergens: [] }
+        ],
+        high: [
+          { name: "Full English Breakfast", calories: 650, protein: 35, carbs: 45, fats: 38, fiber: 8, image: "🍳", allergens: ["eggs", "milk", "wheat"] },
+          { name: "Protein French Toast", calories: 580, protein: 32, carbs: 68, fats: 18, fiber: 6, image: "🍞", allergens: ["eggs", "milk", "wheat"] },
+          { name: "Breakfast Burrito Deluxe", calories: 620, protein: 28, carbs: 55, fats: 32, fiber: 12, image: "🌯", allergens: ["eggs", "milk", "wheat"] },
+          { name: "Steak and Eggs", calories: 680, protein: 42, carbs: 25, fats: 45, fiber: 3, image: "🥩", allergens: ["eggs"] },
+          { name: "Loaded Pancake Stack", calories: 640, protein: 26, carbs: 78, fats: 22, fiber: 8, image: "🥞", allergens: ["eggs", "milk", "wheat"] },
+          { name: "Breakfast Sandwich Combo", calories: 590, protein: 30, carbs: 48, fats: 28, fiber: 6, image: "🥪", allergens: ["eggs", "milk", "wheat"] },
+          { name: "Granola Bowl with Nuts", calories: 610, protein: 24, carbs: 72, fats: 24, fiber: 12, image: "🥣", allergens: ["tree_nuts", "milk"] },
+          { name: "Acai Bowl with Coconut", calories: 580, protein: 22, carbs: 68, fats: 22, fiber: 12, image: "🍇", allergens: [] },
+          { name: "Tofu Scramble with Vegetables", calories: 560, protein: 28, carbs: 45, fats: 28, fiber: 8, image: "🥘", allergens: ["soy"] }
+        ]
+      },
+      lunch: {
+        low: [
+          { name: "Grilled Chicken Salad", calories: 380, protein: 35, carbs: 15, fats: 18, fiber: 8, image: "🥗", allergens: [] },
+          { name: "Turkey Wrap", calories: 420, protein: 28, carbs: 45, fats: 12, fiber: 6, image: "🌯", allergens: ["wheat"] },
+          { name: "Vegetable Soup with Bread", calories: 350, protein: 15, carbs: 48, fats: 8, fiber: 12, image: "🍲", allergens: ["wheat"] },
+          { name: "Tuna Salad", calories: 360, protein: 32, carbs: 18, fats: 16, fiber: 6, image: "🥗", allergens: ["fish"] },
+          { name: "Chicken Caesar Wrap", calories: 400, protein: 30, carbs: 38, fats: 14, fiber: 4, image: "🌯", allergens: ["wheat", "milk"] },
+          { name: "Quinoa Buddha Bowl", calories: 390, protein: 18, carbs: 52, fats: 12, fiber: 10, image: "🥙", allergens: [] },
+          { name: "Grilled Fish Tacos", calories: 410, protein: 28, carbs: 42, fats: 14, fiber: 8, image: "🌮", allergens: ["fish", "wheat"] },
+          { name: "Lentil Soup", calories: 370, protein: 20, carbs: 48, fats: 8, fiber: 12, image: "🍲", allergens: [] },
+          { name: "Rice Paper Rolls", calories: 340, protein: 16, carbs: 45, fats: 10, fiber: 6, image: "🥢", allergens: [] },
+          { name: "Grilled Chicken with Rice", calories: 380, protein: 32, carbs: 38, fats: 8, fiber: 2, image: "🍗", allergens: [] },
+          { name: "Vegetable Stir Fry", calories: 320, protein: 12, carbs: 48, fats: 10, fiber: 8, image: "🥘", allergens: [] }
+        ],
+        medium: [
+          { name: "Chicken Burrito Bowl", calories: 620, protein: 42, carbs: 68, fats: 15, fiber: 10, image: "🥙", allergens: ["milk"] },
+          { name: "Salmon Quinoa Bowl", calories: 580, protein: 38, carbs: 52, fats: 22, fiber: 8, image: "🐟", allergens: ["fish"] },
+          { name: "Turkey Club Sandwich", calories: 550, protein: 32, carbs: 48, fats: 24, fiber: 6, image: "🥪", allergens: ["wheat", "eggs"] },
+          { name: "Chicken Teriyaki Bowl", calories: 590, protein: 36, carbs: 65, fats: 18, fiber: 6, image: "🍛", allergens: ["soy", "wheat"] },
+          { name: "Mediterranean Wrap", calories: 560, protein: 28, carbs: 58, fats: 22, fiber: 8, image: "🌯", allergens: ["wheat", "milk"] },
+          { name: "Beef and Rice Bowl", calories: 600, protein: 34, carbs: 62, fats: 20, fiber: 4, image: "🍛", allergens: [] },
+          { name: "Chicken Pita Pocket", calories: 540, protein: 30, carbs: 55, fats: 18, fiber: 6, image: "🥙", allergens: ["wheat"] },
+          { name: "Tofu Stir Fry", calories: 520, protein: 28, carbs: 58, fats: 18, fiber: 8, image: "🥘", allergens: ["soy"] },
+          { name: "Chickpea Curry Bowl", calories: 550, protein: 22, carbs: 72, fats: 16, fiber: 12, image: "🍛", allergens: [] }
+        ],
+        high: [
+          { name: "Loaded Chicken Quesadilla", calories: 780, protein: 45, carbs: 58, fats: 38, fiber: 8, image: "🌮", allergens: ["wheat", "milk"] },
+          { name: "Beef Stir Fry with Rice", calories: 720, protein: 42, carbs: 65, fats: 28, fiber: 6, image: "🍛", allergens: ["soy"] },
+          { name: "Pasta with Meat Sauce", calories: 680, protein: 35, carbs: 78, fats: 22, fiber: 8, image: "🍝", allergens: ["wheat"] },
+          { name: "BBQ Pulled Pork Sandwich", calories: 750, protein: 40, carbs: 68, fats: 32, fiber: 6, image: "🥪", allergens: ["wheat"] },
+          { name: "Loaded Nachos", calories: 820, protein: 38, carbs: 72, fats: 42, fiber: 10, image: "🌮", allergens: ["milk"] },
+          { name: "Chicken Parmesan", calories: 760, protein: 48, carbs: 55, fats: 35, fiber: 6, image: "🍗", allergens: ["wheat", "milk", "eggs"] },
+          { name: "Fish and Chips", calories: 790, protein: 36, carbs: 78, fats: 38, fiber: 8, image: "🐟", allergens: ["fish", "wheat"] },
+          { name: "Veggie Burger Deluxe", calories: 720, protein: 32, carbs: 75, fats: 32, fiber: 12, image: "🍔", allergens: ["wheat"] },
+          { name: "Coconut Curry Bowl", calories: 680, protein: 28, carbs: 78, fats: 28, fiber: 10, image: "🍛", allergens: [] }
+        ]
+      },
+      dinner: {
+        low: [
+          { name: "Grilled Fish with Vegetables", calories: 420, protein: 38, carbs: 25, fats: 18, fiber: 8, image: "🐟", allergens: ["fish"] },
+          { name: "Chicken Stir Fry", calories: 380, protein: 32, carbs: 28, fats: 15, fiber: 6, image: "🍛", allergens: [] },
+          { name: "Lean Beef with Sweet Potato", calories: 450, protein: 35, carbs: 35, fats: 18, fiber: 8, image: "🥩", allergens: [] },
+          { name: "Turkey Meatballs with Zucchini", calories: 390, protein: 34, carbs: 22, fats: 16, fiber: 6, image: "🍝", allergens: [] },
+          { name: "Baked Cod with Asparagus", calories: 360, protein: 36, carbs: 18, fats: 14, fiber: 6, image: "🐟", allergens: ["fish"] },
+          { name: "Chicken Breast with Broccoli", calories: 410, protein: 40, carbs: 20, fats: 16, fiber: 8, image: "🍗", allergens: [] },
+          { name: "Shrimp Salad", calories: 370, protein: 32, carbs: 24, fats: 14, fiber: 8, image: "🦐", allergens: ["shellfish"] },
+          { name: "Tofu and Vegetable Curry", calories: 380, protein: 22, carbs: 35, fats: 18, fiber: 8, image: "🍛", allergens: ["soy"] },
+          { name: "Grilled Portobello Mushroom", calories: 340, protein: 18, carbs: 32, fats: 16, fiber: 10, image: "🍄", allergens: [] },
+          { name: "Roasted Chicken with Vegetables", calories: 380, protein: 35, carbs: 25, fats: 15, fiber: 8, image: "🍗", allergens: [] },
+          { name: "Beef and Rice Bowl", calories: 420, protein: 32, carbs: 35, fats: 16, fiber: 4, image: "🍛", allergens: [] }
+        ],
+        medium: [
+          { name: "Grilled Steak with Potato", calories: 680, protein: 48, carbs: 51, fats: 24, fiber: 8, image: "🥩", allergens: [] },
+          { name: "Baked Chicken with Rice", calories: 620, protein: 45, carbs: 58, fats: 18, fiber: 4, image: "🍗", allergens: [] },
+          { name: "Pork Tenderloin with Quinoa", calories: 580, protein: 42, carbs: 48, fats: 22, fiber: 6, image: "🥩", allergens: [] },
+          { name: "Salmon with Wild Rice", calories: 640, protein: 44, carbs: 52, fats: 26, fiber: 6, image: "🐟", allergens: ["fish"] },
+          { name: "Beef Tacos with Beans", calories: 600, protein: 38, carbs: 55, fats: 24, fiber: 12, image: "🌮", allergens: ["wheat", "milk"] },
+          { name: "Chicken Curry with Rice", calories: 590, protein: 40, carbs: 62, fats: 18, fiber: 8, image: "🍛", allergens: [] },
+          { name: "Meatloaf with Mashed Potatoes", calories: 650, protein: 36, carbs: 58, fats: 26, fiber: 6, image: "🍖", allergens: ["eggs", "milk"] },
+          { name: "Tempeh Stir Fry", calories: 560, protein: 32, carbs: 58, fats: 22, fiber: 8, image: "🥘", allergens: ["soy"] },
+          { name: "Stuffed Bell Peppers", calories: 520, protein: 28, carbs: 52, fats: 20, fiber: 10, image: "🫑", allergens: [] }
+        ],
+        high: [
+          { name: "Ribeye Steak with Loaded Potato", calories: 850, protein: 52, carbs: 48, fats: 48, fiber: 6, image: "🥩", allergens: ["milk"] },
+          { name: "BBQ Ribs with Mac & Cheese", calories: 920, protein: 45, carbs: 68, fats: 52, fiber: 4, image: "🍖", allergens: ["milk", "wheat"] },
+          { name: "Lamb Chops with Roasted Vegetables", calories: 780, protein: 48, carbs: 35, fats: 45, fiber: 8, image: "🍖", allergens: [] },
+          { name: "Lobster with Garlic Butter", calories: 820, protein: 42, carbs: 45, fats: 48, fiber: 4, image: "🦞", allergens: ["shellfish", "milk"] },
+          { name: "Prime Rib with Yorkshire Pudding", calories: 890, protein: 55, carbs: 42, fats: 55, fiber: 4, image: "🥩", allergens: ["wheat", "milk", "eggs"] },
+          { name: "Stuffed Chicken Breast", calories: 760, protein: 50, carbs: 38, fats: 38, fiber: 6, image: "🍗", allergens: ["milk"] },
+          { name: "Pork Belly with Sweet Potato", calories: 810, protein: 38, carbs: 52, fats: 48, fiber: 8, image: "🥩", allergens: [] },
+          { name: "Eggplant Parmesan", calories: 720, protein: 28, carbs: 68, fats: 38, fiber: 12, image: "🍆", allergens: ["wheat", "milk", "eggs"] },
+          { name: "Jackfruit BBQ Bowl", calories: 680, protein: 22, carbs: 88, fats: 22, fiber: 15, image: "🥭", allergens: [] }
+        ]
+      },
+      snacks: {
+        low: [
+          { name: "Apple with Almond Butter", calories: 180, protein: 6, carbs: 22, fats: 8, fiber: 6, image: "🍎", allergens: ["tree_nuts"] },
+          { name: "Greek Yogurt", calories: 150, protein: 15, carbs: 12, fats: 5, fiber: 0, image: "🥛", allergens: ["milk"] },
+          { name: "Mixed Nuts", calories: 200, protein: 8, carbs: 8, fats: 16, fiber: 4, image: "🥜", allergens: ["tree_nuts", "peanuts"] },
+          { name: "Carrot Sticks with Hummus", calories: 160, protein: 6, carbs: 18, fats: 8, fiber: 6, image: "🥕", allergens: ["sesame"] },
+          { name: "String Cheese and Grapes", calories: 170, protein: 8, carbs: 20, fats: 6, fiber: 2, image: "🧀", allergens: ["milk"] },
+          { name: "Rice Cakes with Peanut Butter", calories: 190, protein: 7, carbs: 24, fats: 8, fiber: 2, image: "🍘", allergens: ["peanuts"] },
+          { name: "Berries and Cottage Cheese", calories: 140, protein: 12, carbs: 16, fats: 4, fiber: 4, image: "🫐", allergens: ["milk"] },
+          { name: "Banana with Sunflower Seeds", calories: 160, protein: 6, carbs: 24, fats: 6, fiber: 4, image: "🍌", allergens: [] },
+          { name: "Coconut Chips", calories: 150, protein: 2, carbs: 12, fats: 12, fiber: 6, image: "🥥", allergens: [] },
+          { name: "Fresh Fruit Salad", calories: 120, protein: 2, carbs: 28, fats: 1, fiber: 4, image: "🍓", allergens: [] },
+          { name: "Vegetable Sticks", calories: 80, protein: 3, carbs: 15, fats: 2, fiber: 5, image: "🥕", allergens: [] }
+        ],
+        medium: [
+          { name: "Trail Mix & Protein Bar", calories: 320, protein: 12, carbs: 38, fats: 14, fiber: 6, image: "🥜", allergens: ["tree_nuts", "peanuts", "milk"] },
+          { name: "Hummus with Vegetables", calories: 280, protein: 10, carbs: 25, fats: 16, fiber: 8, image: "🥕", allergens: ["sesame"] },
+          { name: "Cheese and Crackers", calories: 300, protein: 12, carbs: 28, fats: 16, fiber: 4, image: "🧀", allergens: ["milk", "wheat"] },
+          { name: "Protein Smoothie", calories: 290, protein: 20, carbs: 32, fats: 8, fiber: 4, image: "🥤", allergens: ["milk"] },
+          { name: "Granola Bar and Banana", calories: 310, protein: 8, carbs: 48, fats: 10, fiber: 6, image: "🍌", allergens: ["tree_nuts"] },
+          { name: "Avocado Toast", calories: 270, protein: 8, carbs: 28, fats: 14, fiber: 10, image: "🥑", allergens: ["wheat"] },
+          { name: "Yogurt Parfait", calories: 260, protein: 14, carbs: 35, fats: 8, fiber: 4, image: "🥣", allergens: ["milk"] },
+          { name: "Roasted Chickpeas", calories: 250, protein: 12, carbs: 32, fats: 8, fiber: 8, image: "🫘", allergens: [] },
+          { name: "Fruit and Nut Energy Balls", calories: 280, protein: 8, carbs: 28, fats: 16, fiber: 6, image: "🍇", allergens: ["tree_nuts"] }
+        ],
+        high: [
+          { name: "Protein Smoothie with Banana", calories: 450, protein: 25, carbs: 48, fats: 18, fiber: 6, image: "🥤", allergens: ["milk"] },
+          { name: "Peanut Butter Toast", calories: 420, protein: 16, carbs: 42, fats: 22, fiber: 8, image: "🍞", allergens: ["peanuts", "wheat"] },
+          { name: "Energy Balls & Milk", calories: 380, protein: 18, carbs: 35, fats: 20, fiber: 6, image: "🥛", allergens: ["milk", "tree_nuts"] },
+          { name: "Protein Muffin", calories: 410, protein: 20, carbs: 45, fats: 16, fiber: 6, image: "🧁", allergens: ["wheat", "eggs", "milk"] },
+          { name: "Nut Butter Sandwich", calories: 460, protein: 18, carbs: 48, fats: 24, fiber: 8, image: "🥪", allergens: ["tree_nuts", "wheat"] },
+          { name: "Chocolate Protein Shake", calories: 390, protein: 22, carbs: 38, fats: 16, fiber: 4, image: "🥤", allergens: ["milk"] },
+          { name: "Bagel with Cream Cheese", calories: 440, protein: 14, carbs: 52, fats: 20, fiber: 4, image: "🥯", allergens: ["wheat", "milk"] },
+          { name: "Coconut Protein Balls", calories: 360, protein: 16, carbs: 32, fats: 20, fiber: 8, image: "🥥", allergens: [] },
+          { name: "Quinoa Protein Bowl", calories: 420, protein: 18, carbs: 45, fats: 18, fiber: 8, image: "🥣", allergens: [] }
+        ]
+      }
+    };
+    
+    // Generate meal plan based on calorie target
+    function generateMealPlan(targetCalories, dayIndex) {
+      const breakfastCals = Math.round(targetCalories * 0.25); // 25%
+      const lunchCals = Math.round(targetCalories * 0.35); // 35%
+      const dinnerCals = Math.round(targetCalories * 0.30); // 30%
+      const snackCals = Math.round(targetCalories * 0.10); // 10%
+      
+      // Get user allergies from stored data
+      const userAllergies = calculatedData?.allergies || [];
+      
+      // Determine meal size category
+      const getCategory = (mealCals, mealType) => {
+        const thresholds = {
+          breakfast: { low: 350, high: 500 },
+          lunch: { low: 500, high: 650 },
+          dinner: { low: 500, high: 700 },
+          snacks: { low: 250, high: 350 }
+        };
+        
+        if (mealCals < thresholds[mealType].low) return 'low';
+        if (mealCals > thresholds[mealType].high) return 'high';
+        return 'medium';
+      };
+      
+      // Filter meals based on allergies
+      const filterMealsByAllergies = (meals, userAllergies) => {
+        if (!userAllergies || userAllergies.length === 0) {
+          return meals;
+        }
+        
+        return meals.filter(meal => {
+          // Check if meal contains any of the user's allergens
+          return !meal.allergens.some(allergen => userAllergies.includes(allergen));
+        });
+      };
+      
+      // Get safe meal options for each category
+      const getSafeMeal = (mealType, category, dayIndex) => {
+        const allMeals = mealDatabase[mealType][category];
+        const safeMeals = filterMealsByAllergies(allMeals, userAllergies);
+        
+        // If no safe meals available, try other categories as fallback
+        if (safeMeals.length === 0) {
+          console.warn(`No safe ${mealType} meals found for ${category} category. Trying fallback options.`);
+          
+          // Try other categories as fallback
+          const categories = ['low', 'medium', 'high'];
+          for (const fallbackCategory of categories) {
+            if (fallbackCategory !== category) {
+              const fallbackMeals = filterMealsByAllergies(mealDatabase[mealType][fallbackCategory], userAllergies);
+              if (fallbackMeals.length > 0) {
+                return fallbackMeals[dayIndex % fallbackMeals.length];
+              }
+            }
+          }
+          
+          // If still no safe options, return a basic safe meal
+          return {
+            name: `Safe ${mealType.charAt(0).toUpperCase() + mealType.slice(1)}`,
+            calories: Math.round(targetCalories * (mealType === 'breakfast' ? 0.25 : mealType === 'lunch' ? 0.35 : mealType === 'dinner' ? 0.30 : 0.10)),
+            protein: 20,
+            carbs: 30,
+            fats: 10,
+            fiber: 5,
+            image: "🥗",
+            allergens: []
+          };
+        }
+        
+        return safeMeals[dayIndex % safeMeals.length];
+      };
+      
+      // Select different meals for each day using dayIndex, filtered by allergies
+      const breakfast = getSafeMeal('breakfast', getCategory(breakfastCals, 'breakfast'), dayIndex);
+      const lunch = getSafeMeal('lunch', getCategory(lunchCals, 'lunch'), dayIndex);
+      const dinner = getSafeMeal('dinner', getCategory(dinnerCals, 'dinner'), dayIndex);
+      const snacks = getSafeMeal('snacks', getCategory(snackCals, 'snacks'), dayIndex);
+      
+      const totalCalories = breakfast.calories + lunch.calories + dinner.calories + snacks.calories;
+      const totalProtein = breakfast.protein + lunch.protein + dinner.protein + snacks.protein;
+      const totalCarbs = breakfast.carbs + lunch.carbs + dinner.carbs + snacks.carbs;
+      const totalFats = breakfast.fats + lunch.fats + dinner.fats + snacks.fats;
+      const totalFiber = breakfast.fiber + lunch.fiber + dinner.fiber + snacks.fiber;
+      
+      return {
+        calories: totalCalories,
+        protein: totalProtein,
+        carbs: totalCarbs,
+        fats: totalFats,
+        fiber: totalFiber,
+        meals: { breakfast, lunch, dinner, snacks }
+      };
+    }
+
+    // Generate daily plan cards
+    function generateDailyPlans() {
+      if (!calculatedData) return;
+      
+      const tabsContainer = document.getElementById('daysTabs');
+      const contentContainer = document.getElementById('dayContentContainer');
+      
+      // Clear existing content
+      tabsContainer.innerHTML = '';
+      contentContainer.innerHTML = '';
+      
+      const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+      const targetCalories = getTargetCalories();
+      
+      days.forEach((day, index) => {
+        // Generate slight variation in daily calories (±5%)
+        const variation = (Math.random() - 0.5) * 0.1; // ±5%
+        const dailyCalories = Math.round(targetCalories * (1 + variation));
+        const dayData = generateMealPlan(dailyCalories, index);
+        
+        // Create tab button
+        const tabButton = document.createElement('button');
+        tabButton.className = `day-tab ${index === 0 ? 'active' : ''}`;
+        tabButton.textContent = day;
+        tabButton.onclick = () => switchDay(index);
+        tabsContainer.appendChild(tabButton);
+        
+        // Create content panel
+        const contentPanel = document.createElement('div');
+        contentPanel.className = `day-content-panel ${index === 0 ? 'active' : ''}`;
+        
+        // Check if any meals were filtered for allergies
+        const userAllergies = calculatedData?.allergies || [];
+        const allergyNotice = userAllergies.length > 0 ? 
+          `<div class="allergy-notice">🛡️ Meals filtered for your allergies: ${userAllergies.map(a => a.replace('_', ' ')).join(', ')}</div>` : '';
+        
+        contentPanel.innerHTML = `
+          <div class="day-header-info">
+            <h3 class="day-title">${day}</h3>
+            <div class="day-summary">
+              <div class="summary-chip">
+                <div class="summary-dot calories"></div>
+                <span>${dayData.calories} cal</span>
+              </div>
+              <div class="summary-chip">
+                <div class="summary-dot protein"></div>
+                <span>${dayData.protein}g protein</span>
+              </div>
+              <div class="summary-chip">
+                <div class="summary-dot carbs"></div>
+                <span>${dayData.carbs}g carbs</span>
+              </div>
+              <div class="summary-chip">
+                <div class="summary-dot fats"></div>
+                <span>${dayData.fats}g fats</span>
+              </div>
+            </div>
+          </div>
+          ${allergyNotice}
+          ${generateDayContent(dayData)}
+        `;
+        
+        contentContainer.appendChild(contentPanel);
+      });
+    }
+    
+    // Switch between days
+    function switchDay(dayIndex) {
+      // Update tab buttons
+      document.querySelectorAll('.day-tab').forEach((tab, index) => {
+        tab.classList.toggle('active', index === dayIndex);
+      });
+      
+      // Update content panels
+      document.querySelectorAll('.day-content-panel').forEach((panel, index) => {
+        panel.classList.toggle('active', index === dayIndex);
+      });
+    }
+
+    // Generate content for each day
+    function generateDayContent(dayData) {
+      const proteinPercent = Math.round((dayData.protein * 4 / dayData.calories) * 100);
+      const carbsPercent = Math.round((dayData.carbs * 4 / dayData.calories) * 100);
+      const fatsPercent = Math.round((dayData.fats * 9 / dayData.calories) * 100);
+      const fiberPercent = 100 - proteinPercent - carbsPercent - fatsPercent;
+
+      return `
+        <div class="macro-distribution">
+          <div class="macro-title">
+            <h4>Macro Distribution</h4>
+            <span class="total-calories">${dayData.calories} calories</span>
+          </div>
+          <div class="macro-bar">
+            <div class="macro-segment protein" style="width: ${proteinPercent}%"></div>
+            <div class="macro-segment carbs" style="width: ${carbsPercent}%"></div>
+            <div class="macro-segment fats" style="width: ${fatsPercent}%"></div>
+            <div class="macro-segment fiber" style="width: ${fiberPercent}%"></div>
+          </div>
+          <div class="macro-legend">
+            <div class="macro-item">
+              <div class="macro-dot protein"></div>
+              <div class="macro-text">
+                <span class="macro-value">${dayData.protein}g</span> Protein
+              </div>
+            </div>
+            <div class="macro-item">
+              <div class="macro-dot carbs"></div>
+              <div class="macro-text">
+                <span class="macro-value">${dayData.carbs}g</span> Carbs
+              </div>
+            </div>
+            <div class="macro-item">
+              <div class="macro-dot fats"></div>
+              <div class="macro-text">
+                <span class="macro-value">${dayData.fats}g</span> Fats
+              </div>
+            </div>
+            <div class="macro-item">
+              <div class="macro-dot fiber"></div>
+              <div class="macro-text">
+                <span class="macro-value">${dayData.fiber}g</span> Fiber
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="meals-grid">
+          ${generateMealCard('BREAKFAST', dayData.meals.breakfast)}
+          ${generateMealCard('LUNCH', dayData.meals.lunch)}
+          ${generateMealCard('DINNER', dayData.meals.dinner)}
+          ${generateMealCard('SNACKS', dayData.meals.snacks)}
+        </div>
+      `;
+    }
+
+    // Generate individual meal cards
+    function generateMealCard(type, meal) {
+      const mealClass = type.toLowerCase();
+      const userAllergies = calculatedData?.allergies || [];
+      const isAllergySafe = userAllergies.length > 0 && !meal.allergens.some(allergen => userAllergies.includes(allergen));
+      
+      return `
+        <div class="meal-card ${mealClass}">
+          <div class="meal-image">${meal.image}</div>
+          ${isAllergySafe && userAllergies.length > 0 ? '<div class="allergy-safe-badge">✓ Safe</div>' : ''}
+          <div class="meal-header">
+            <div class="meal-type">${type}</div>
+            <div class="meal-calories">${meal.calories} cal</div>
+          </div>
+          <div class="meal-name">${meal.name}</div>
+          <div class="meal-macros">
+            <div class="meal-macro">
+              <div class="meal-macro-value protein">${meal.protein}g</div>
+              <div class="meal-macro-label">Protein</div>
+            </div>
+            <div class="meal-macro">
+              <div class="meal-macro-value carbs">${meal.carbs}g</div>
+              <div class="meal-macro-label">Carbs</div>
+            </div>
+            <div class="meal-macro">
+              <div class="meal-macro-value fats">${meal.fats}g</div>
+              <div class="meal-macro-label">Fats</div>
+            </div>
+            <div class="meal-macro">
+              <div class="meal-macro-value fiber">${meal.fiber}g</div>
+              <div class="meal-macro-label">Fiber</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Goal selection
+    document.querySelectorAll('.goal-option').forEach(option => {
+      option.addEventListener('click', function() {
+        document.querySelectorAll('.goal-option').forEach(opt => opt.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Update current goal
+        if (this.classList.contains('weight-loss')) {
+          currentGoal = 'weight-loss';
+        } else if (this.classList.contains('weight-gain')) {
+          currentGoal = 'weight-gain';
+        } else {
+          currentGoal = 'maintain';
+        }
+        
+        // Regenerate meal plans and averages
+        updateWeeklyAverages();
+        generateDailyPlans();
+      });
+    });
+
+    // Update meal plans based on calorie goal
+    function updateMealPlans(targetCalories) {
+      updateWeeklyAverages();
+      generateDailyPlans();
+    }
+
+    // Initialize the page
+    window.addEventListener('load', function() {
+      loadCalculationData();
+    });
+  </script>
+</body>
+</html>
