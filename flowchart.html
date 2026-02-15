@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NutriFit Website Flowchart</title>
+<style>
+:root {
+  --primary-dark: #3A5A40;
+  --primary-medium: #588157;
+  --primary-light: #A3B18A;
+  --primary-cream: #DAD7CD;
+  --white: #ffffff;
+  --black: #000000;
+  --gray: #666666;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+}
+
+h1 {
+  text-align: center;
+  color: var(--primary-dark);
+  margin-bottom: 40px;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.flowchart {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+}
+
+.flow-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.flow-box {
+  background: var(--primary-dark);
+  color: white;
+  padding: 20px 30px;
+  border-radius: 12px;
+  min-width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(58, 90, 64, 0.3);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.flow-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(58, 90, 64, 0.4);
+}
+
+.flow-box.start {
+  background: var(--gray);
+  border-radius: 50px;
+  font-weight: 600;
+}
+
+.flow-box.page {
+  background: var(--primary-dark);
+}
+
+.flow-box.calculator {
+  background: var(--primary-medium);
+}
+
+.flow-box.feature {
+  background: var(--primary-light);
+  color: var(--black);
+}
+
+.flow-box.modal {
+  background: var(--primary-cream);
+  color: var(--black);
+  border: 2px solid var(--primary-dark);
+}
+
+.flow-box h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.flow-box p {
+  font-size: 13px;
+  opacity: 0.9;
+  line-height: 1.4;
+}
+
+.arrow {
+  width: 2px;
+  height: 40px;
+  background: var(--primary-dark);
+  position: relative;
+  margin: 0 auto;
+}
+
+.arrow::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 12px solid var(--primary-dark);
+}
+
+.arrow-horizontal {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--primary-dark);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.arrow-horizontal::before {
+  content: '→';
+  font-size: 24px;
+}
+
+.section-title {
+  background: var(--primary-dark);
+  color: white;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 20px 0;
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 2px solid var(--primary-cream);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.legend-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.legend-text {
+  font-size: 14px;
+  color: var(--black);
+  font-weight: 500;
+}
+
+.flow-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.flow-branches {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 28px;
+  }
+  
+  .flow-box {
+    min-width: 150px;
+    padding: 15px 20px;
+  }
+  
+  .flow-box h3 {
+    font-size: 16px;
+  }
+  
+  .flow-box p {
+    font-size: 12px;
+  }
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌿 NutriFit Website Flowchart</h1>
+    
+    <div class="flowchart">
+      <!-- Start -->
+      <div class="flow-box start">
+        <h3>👤 User Visits Website</h3>
+      </div>
+      
+      <div class="arrow"></div>
+      
+      <!-- Landing Page -->
+      <div class="flow-box page">
+        <h3>🏠 Landing Page</h3>
+        <p>index.html</p>
+      </div>
+      
+      <div class="arrow"></div>
+      
+      <!-- Main Actions -->
+      <div class="section-title">User Actions from Landing Page</div>
+      
+      <div class="flow-branches">
+        <div class="flow-group">
+          <div class="arrow-horizontal">What is BMI?</div>
+          <div class="flow-box modal">
+            <h3>ℹ️ BMI Modal</h3>
+            <p>Information popup</p>
+          </div>
+        </div>
+        
+        <div class="flow-group">
+          <div class="arrow-horizontal">Get Started</div>
+          <div class="flow-box calculator">
+            <h3>🧮 Calculator</h3>
+            <p>calculator.html</p>
+          </div>
+        </div>
+        
+        <div class="flow-group">
+          <div class="arrow-horizontal">Learn More</div>
+          <div class="flow-box feature">
+            <h3>✨ Features</h3>
+            <p>Scroll to section</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="arrow"></div>
+      
+      <!-- Calculator Flow -->
+      <div class="section-title">Calculator Flow</div>
+      
+      <div class="flow-box calculator">
+        <h3>📝 Fill Form</h3>
+        <p>Age, Gender, Height, Weight<br>Activity Level, Goal</p>
+      </div>
+      
+      <div class="arrow"></div>
+      
+      <div class="flow-box feature">
+        <h3>📊 View Results</h3>
+        <p>BMI, Category, Calorie Needs</p>
+      </div>
+      
+      <div class="arrow"></div>
+      
+      <div class="flow-box calculator">
+        <h3>🍽️ Meal Plans</h3>
+        <p>meal-plans.html</p>
+      </div>
+      
+      <div class="arrow"></div>
+      
+      <!-- Meal Plans Flow -->
+      <div class="section-title">Meal Plans Features</div>
+      
+      <div class="flow-branches">
+        <div class="flow-box feature">
+          <h3>📅 Monday</h3>
+          <p>Daily meals</p>
+        </div>
+        <div class="flow-box feature">
+          <h3>📅 Tuesday</h3>
+          <p>Daily meals</p>
+        </div>
+        <div class="flow-box feature">
+          <h3>📅 Wednesday</h3>
+          <p>Daily meals</p>
+        </div>
+        <div class="flow-box feature">
+          <h3>📅 Thursday</h3>
+          <p>Daily meals</p>
+        </div>
+        <div class="flow-box feature">
+          <h3>📅 Friday</h3>
+          <p>Daily meals</p>
+        </div>
+        <div class="flow-box feature">
+          <h3>📅 Saturday</h3>
+          <p>Daily meals</p>
+        </div>
+        <div class="flow-box feature">
+          <h3>📅 Sunday</h3>
+          <p>Daily meals</p>
+        </div>
+      </div>
+      
+      <div class="arrow"></div>
+      
+      <div class="flow-branches">
+        <div class="flow-box feature">
+          <h3>🥘 View Ingredients</h3>
+          <p>Meal details & allergens</p>
+        </div>
+        <div class="flow-box feature">
+          <h3>🖨️ Print Plan</h3>
+          <p>Print meal plan</p>
+        </div>
+      </div>
+      
+      <div class="arrow"></div>
+      
+      <!-- Footer Navigation -->
+      <div class="section-title">Footer Navigation (All Pages)</div>
+      
+      <div class="flow-branches">
+        <div class="flow-box page">
+          <h3>🏠 Home</h3>
+          <p>index.html</p>
+        </div>
+        <div class="flow-box calculator">
+          <h3>🧮 Calculator</h3>
+          <p>calculator.html</p>
+        </div>
+        <div class="flow-box page">
+          <h3>📚 References</h3>
+          <p>references.html</p>
+        </div>
+        <div class="flow-box page">
+          <h3>👥 Team</h3>
+          <p>team.html</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Legend -->
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-box" style="background: var(--gray);"></div>
+        <span class="legend-text">Start Point</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-box" style="background: var(--primary-dark);"></div>
+        <span class="legend-text">Main Pages</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-box" style="background: var(--primary-medium);"></div>
+        <span class="legend-text">Calculator Pages</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-box" style="background: var(--primary-light);"></div>
+        <span class="legend-text">Features/Results</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-box" style="background: var(--primary-cream); border: 2px solid var(--primary-dark);"></div>
+        <span class="legend-text">Modals/Popups</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
