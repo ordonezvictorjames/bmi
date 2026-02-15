@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>NutriFit - Your Complete Nutrition & Fitness Companion</title>
+<title>NutriFitTrack - Your Complete Nutrition & Fitness Companion</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="NutriFit - Your complete nutrition and fitness companion. Calculate BMI, get personalized calorie recommendations, and achieve your health goals with science-backed insights.">
+<meta name="description" content="NutriFitTrack - Your complete nutrition and fitness companion. Calculate BMI, get personalized calorie recommendations, and achieve your health goals with science-backed insights.">
 <meta name="keywords" content="BMI calculator, calorie calculator, nutrition, fitness, health, weight loss, meal planning">
-<meta name="author" content="NutriFit">
+<meta name="author" content="NutriFitTrack">
 
 <link rel="icon" href="/image/logo.svg" type="image/svg+xml">
 <link rel="shortcut icon" href="/image/logo.svg" type="image/svg+xml">
@@ -1104,7 +1104,7 @@ body {
 <body>
   <nav class="navbar">
     <div class="nav-container">
-      <a href="index.html" class="logo">NutriFit</a>
+      <a href="index.html" class="logo">NutriFitTrack</a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="calculator.html" class="active">Calculator</a></li>
@@ -1393,11 +1393,11 @@ body {
 
   <script>
     // Check if user came from index.html, if not redirect
-    if (!document.referrer.includes('index.html') && !sessionStorage.getItem('nutrifit-access')) {
+    if (!document.referrer.includes('index.html') && !sessionStorage.getItem('nutrifittrack-access')) {
       // Allow access if coming from index.html or if session is set
       if (document.referrer.includes(window.location.origin)) {
-        sessionStorage.setItem('nutrifit-access', 'true');
-      } else if (!sessionStorage.getItem('nutrifit-access')) {
+        sessionStorage.setItem('nutrifittrack-access', 'true');
+      } else if (!sessionStorage.getItem('nutrifittrack-access')) {
         window.location.href = 'index.html';
       }
     }
@@ -1494,7 +1494,7 @@ body {
       const lossCalories = Math.round(tdee - 500);
       const gainCalories = Math.round(tdee + 500);
       
-      localStorage.setItem('nutrifit-calculations', JSON.stringify({
+      localStorage.setItem('nutrifittrack-calculations', JSON.stringify({
         weight, height, age, gender, activity,
         allergies: selectedAllergies,
         bmi, category, bmr, tdee, lossCalories, gainCalories
