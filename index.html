@@ -162,6 +162,11 @@ body {
   line-height: 1.8;
 }
 
+.hero p strong {
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+
 .cta-buttons {
   display: flex;
   gap: 20px;
@@ -287,6 +292,111 @@ body {
   font-size: 14px;
 }
 
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background-color: var(--white);
+  margin: 5% auto;
+  padding: 40px;
+  border-radius: 16px;
+  max-width: 700px;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.close-modal {
+  color: var(--medium-gray);
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  font-size: 32px;
+  font-weight: 300;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  line-height: 1;
+}
+
+.close-modal:hover {
+  color: var(--black);
+}
+
+.modal-content h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 20px;
+}
+
+.modal-content p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--black);
+  margin-bottom: 24px;
+}
+
+.bmi-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 24px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.bmi-table thead {
+  background: var(--primary-dark);
+  color: var(--white);
+}
+
+.bmi-table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.bmi-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--black);
+}
+
+.bmi-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.bmi-table tbody tr:nth-child(even) {
+  background: var(--light-gray);
+}
+
+.bmi-table tbody tr:hover {
+  background: var(--primary-cream);
+}
+
 /* Responsive Design */
 /* Tablet (768px - 1024px) */
 @media (max-width: 1024px) {
@@ -382,6 +492,38 @@ body {
   .feature-card p {
     font-size: 14px;
   }
+  
+  /* Modal responsive */
+  .modal-content {
+    margin: 10% 20px;
+    padding: 32px 24px;
+  }
+  
+  .modal-content h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+    padding-right: 30px;
+  }
+  
+  .modal-content p {
+    font-size: 14px;
+  }
+  
+  .close-modal {
+    right: 16px;
+    top: 16px;
+    font-size: 28px;
+  }
+  
+  .bmi-table {
+    font-size: 13px;
+  }
+  
+  .bmi-table th,
+  .bmi-table td {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
 }
 </style>
 </head>
@@ -401,9 +543,12 @@ body {
   <section class="hero" id="home">
     <div class="hero-container">
       <h1>Transform Your Health with <span class="gradient-text">NutriFit</span></h1>
-      <p>Your complete nutrition and fitness companion. Track your BMI, calculate your nutritional needs, plan your meals, and achieve your health goals with personalized, science-backed recommendations.</p>
+      <p>Your complete nutrition and fitness companion. Track your <strong>BMI</strong>, calculate your nutritional needs, plan your meals, and achieve your health goals with personalized, science-backed recommendations.</p>
       
       <div class="cta-buttons">
+        <button class="cta-button secondary" onclick="openBMIModal()">
+          What is BMI?
+        </button>
         <a href="/calculator" class="cta-button primary" onclick="sessionStorage.setItem('nutrifit-access', 'true')">
           Get Started Free
           <span>→</span>
@@ -452,6 +597,57 @@ body {
     <p>&copy; 2024 NutriFit. All rights reserved.</p>
   </footer>
 
+  <!-- BMI Modal -->
+  <div id="bmiModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeBMIModal()">&times;</span>
+      <h2>BMI Introduction</h2>
+      <p>BMI is a measurement of a person's leanness or corpulence based on their height and weight, and is intended to quantify tissue mass. It is widely used as a general indicator of whether a person has a healthy body weight for their height. Specifically, the value obtained from the calculation of BMI is used to categorize whether a person is underweight, normal weight, overweight, or obese depending on what range the value falls between. These ranges of BMI vary based on factors such as region and age, and are sometimes further divided into subcategories such as severely underweight or very severely obese. Being overweight or underweight can have significant health effects, so while BMI is an imperfect measure of healthy body weight, it is a useful indicator of whether any additional testing or action is required. Refer to the table below to see the different categories based on BMI that are used by the calculator.</p>
+      
+      <table class="bmi-table">
+        <thead>
+          <tr>
+            <th>BMI Range</th>
+            <th>Category</th>
+            <th>Health Risk</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Below 18.5</td>
+            <td>Underweight</td>
+            <td>Malnutrition risk</td>
+          </tr>
+          <tr>
+            <td>18.5 - 24.9</td>
+            <td>Normal weight</td>
+            <td>Low risk</td>
+          </tr>
+          <tr>
+            <td>25.0 - 29.9</td>
+            <td>Overweight</td>
+            <td>Enhanced risk</td>
+          </tr>
+          <tr>
+            <td>30.0 - 34.9</td>
+            <td>Moderately obese</td>
+            <td>Medium risk</td>
+          </tr>
+          <tr>
+            <td>35.0 - 39.9</td>
+            <td>Severely obese</td>
+            <td>High risk</td>
+          </tr>
+          <tr>
+            <td>Above 40</td>
+            <td>Very severely obese</td>
+            <td>Very high risk</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <script>
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
@@ -464,6 +660,31 @@ body {
           });
         }
       });
+    });
+
+    function openBMIModal() {
+      document.getElementById('bmiModal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeBMIModal() {
+      document.getElementById('bmiModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      const modal = document.getElementById('bmiModal');
+      if (event.target === modal) {
+        closeBMIModal();
+      }
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeBMIModal();
+      }
     });
   </script>
 </body>
