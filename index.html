@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- 
+  NutriFit - Home Page
+  Description: Landing page for NutriFit nutrition and fitness companion
+  Features: Hero section, feature cards, BMI modal, footer
+-->
 <meta charset="UTF-8">
 <title>NutriFit - Your Complete Nutrition & Fitness Companion</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,17 +13,24 @@
 <meta name="keywords" content="BMI calculator, calorie calculator, nutrition, fitness, health, weight loss, meal planning">
 <meta name="author" content="NutriFit">
 
+<!-- Favicon links -->
 <link rel="icon" href="/image/logo.svg" type="image/svg+xml">
 <link rel="shortcut icon" href="/image/logo.svg" type="image/svg+xml">
 
+<!-- Google Fonts - Poppins -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+/* ===== CSS VARIABLES ===== */
+/* Define color scheme and reusable values */
 :root {
-  --primary-dark: #3A5A40;
-  --primary-medium: #588157;
-  --primary-light: #A3B18A;
-  --primary-cream: #DAD7CD;
+  /* Primary green color palette */
+  --primary-dark: #3A5A40;      /* Dark green for headers and primary elements */
+  --primary-medium: #588157;     /* Medium green for accents */
+  --primary-light: #A3B18A;      /* Light green for buttons and highlights */
+  --primary-cream: #DAD7CD;      /* Cream for backgrounds and subtle elements */
+  
+  /* Neutral colors */
   --black: #000000;
   --dark-gray: #1a1a1a;
   --medium-gray: #666666;
@@ -27,12 +39,16 @@
   --border: #e0e0e0;
 }
 
+/* ===== GLOBAL RESET ===== */
+/* Remove default margins, padding, and set box-sizing */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* ===== BODY STYLES ===== */
+/* Set default font, line height, and colors */
 body {
   font-family: 'Poppins', sans-serif;
   line-height: 1.6;
@@ -40,31 +56,34 @@ body {
   background: var(--white);
 }
 
-/* Navigation */
+/* ===== NAVIGATION BAR ===== */
+/* Fixed navigation bar at the top of the page */
 .navbar {
-  position: fixed;
+  position: fixed;           /* Stay at top when scrolling */
   top: 0;
   left: 0;
   right: 0;
   background: var(--white);
   padding: 12px 0;
-  z-index: 1000;
+  z-index: 1000;            /* Ensure navbar stays above other content */
   border-bottom: 1px solid var(--border);
 }
 
+/* Container for navigation content with max width */
 .nav-container {
   max-width: 1400px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between;  /* Logo on left, links on right */
   align-items: center;
   padding: 0 24px 0 40px;
 }
 
+/* Logo styling with SVG icon */
 .logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 8px;                        /* Space between icon and text */
   font-size: 18px;
   font-weight: 700;
   color: var(--primary-dark);
@@ -72,6 +91,7 @@ body {
   letter-spacing: -0.5px;
 }
 
+/* Logo icon using SVG background */
 .logo::before {
   content: "";
   width: 24px;
@@ -82,13 +102,15 @@ body {
   display: block;
 }
 
+/* Navigation links container */
 .nav-links {
   display: flex;
-  gap: 40px;
+  gap: 40px;                       /* Space between navigation items */
   list-style: none;
   align-items: center;
 }
 
+/* Individual navigation link styling */
 .nav-links a {
   text-decoration: none;
   color: var(--medium-gray);
@@ -98,41 +120,47 @@ body {
   padding-bottom: 4px;
 }
 
+/* Animated underline effect on hover */
 .nav-links a::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 0;
+  width: 0;                        /* Start with no width */
   height: 2px;
   background: var(--primary-dark);
-  transition: width 0.3s ease;
+  transition: width 0.3s ease;     /* Smooth animation */
 }
 
+/* Expand underline on hover */
 .nav-links a:hover::after {
   width: 100%;
 }
 
+/* Active page link styling */
 .nav-links a.active {
   color: var(--primary-dark);
   font-weight: 600;
 }
 
+/* Show underline for active page */
 .nav-links a.active::after {
   width: 100%;
 }
 
-/* Hero Section */
+/* ===== HERO SECTION ===== */
+/* Main landing section with centered content */
 .hero {
-  min-height: 100vh;
+  min-height: 100vh;               /* Full viewport height */
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 140px 40px 80px;
+  padding: 140px 40px 80px;        /* Extra top padding for fixed navbar */
   background: var(--white);
 }
 
+/* Hero content container */
 .hero-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -140,8 +168,9 @@ body {
   position: relative;
 }
 
+/* Main heading with responsive font size */
 .hero h1 {
-  font-size: clamp(40px, 6vw, 72px);
+  font-size: clamp(40px, 6vw, 72px);  /* Responsive: min 40px, max 72px */
   font-weight: 800;
   line-height: 1.1;
   margin-bottom: 24px;
@@ -149,10 +178,12 @@ body {
   color: var(--primary-dark);
 }
 
+/* Gradient text effect for brand name */
 .hero h1 .gradient-text {
   color: var(--primary-dark);
 }
 
+/* Hero description text */
 .hero p {
   font-size: 20px;
   color: var(--medium-gray);
@@ -163,18 +194,22 @@ body {
   line-height: 1.8;
 }
 
+/* Emphasized text in hero description */
 .hero p strong {
   color: var(--primary-dark);
   font-weight: 700;
 }
 
+/* ===== CALL-TO-ACTION BUTTONS ===== */
+/* Container for CTA buttons */
 .cta-buttons {
   display: flex;
   gap: 20px;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap;                    /* Wrap on smaller screens */
 }
 
+/* Base button styling */
 .cta-button {
   padding: 18px 40px;
   border: none;
@@ -189,9 +224,10 @@ body {
   font-family: 'Poppins', sans-serif;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease;          /* Smooth hover transitions */
 }
 
+/* Animated underline effect for buttons */
 .cta-button::after {
   content: '';
   position: absolute;
@@ -207,44 +243,51 @@ body {
   width: 100%;
 }
 
+/* Primary button (dark green) */
 .cta-button.primary {
   background: var(--primary-dark);
   color: var(--white);
 }
 
+/* Primary button hover effects */
 .cta-button.primary:hover {
   background: var(--primary-medium);
-  transform: translateY(-2px);
+  transform: translateY(-2px);        /* Lift effect */
   box-shadow: 0 4px 12px rgba(58, 90, 64, 0.3);
 }
 
+/* Secondary button (outlined) */
 .cta-button.secondary {
   background: var(--white);
   color: var(--black);
   border: 2px solid var(--black);
 }
 
+/* Secondary button hover effects */
 .cta-button.secondary:hover {
   background: var(--light-gray);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Features Section */
+/* ===== FEATURES SECTION ===== */
+/* Section showcasing app features */
 .features {
   padding: 120px 40px;
   background: var(--light-gray);
   position: relative;
 }
 
+/* Grid layout for feature cards */
 .features-grid {
   max-width: 1400px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));  /* Responsive grid */
   gap: 32px;
 }
 
+/* Individual feature card */
 .feature-card {
   background: var(--primary-medium);
   border: 1px solid var(--primary-medium);
@@ -253,6 +296,7 @@ body {
   position: relative;
 }
 
+/* Icon container for feature cards */
 .feature-icon {
   width: 60px;
   height: 60px;
@@ -266,6 +310,7 @@ body {
   font-size: 28px;
 }
 
+/* Feature card title */
 .feature-card h3 {
   font-size: 20px;
   font-weight: 700;
@@ -273,6 +318,7 @@ body {
   color: var(--white);
 }
 
+/* Feature card description */
 .feature-card p {
   color: var(--white);
   font-size: 14px;
@@ -280,7 +326,8 @@ body {
   opacity: 0.95;
 }
 
-/* Footer */
+/* ===== FOOTER ===== */
+/* Site footer with links and information */
 .footer {
   background: var(--primary-dark);
   color: var(--white);
@@ -288,15 +335,17 @@ body {
   border-top: none;
 }
 
+/* Footer content grid layout */
 .footer-content {
   max-width: 1400px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));  /* Responsive columns */
   gap: 40px;
   margin-bottom: 40px;
 }
 
+/* Footer section headings */
 .footer-section h3,
 .footer-section h4 {
   color: var(--white);
@@ -304,28 +353,33 @@ body {
   font-size: 18px;
 }
 
+/* Footer logo text */
 .footer-logo {
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 12px;
 }
 
+/* Footer tagline text */
 .footer-tagline {
   color: var(--primary-cream);
   font-size: 14px;
   line-height: 1.6;
 }
 
+/* Footer links list */
 .footer-links {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
+/* Footer link items spacing */
 .footer-links li {
   margin-bottom: 12px;
 }
 
+/* Footer link styling */
 .footer-links a {
   color: var(--primary-cream);
   text-decoration: none;
@@ -333,10 +387,12 @@ body {
   transition: color 0.3s ease;
 }
 
+/* Footer link hover effect */
 .footer-links a:hover {
   color: var(--white);
 }
 
+/* Footer bottom section with copyright */
 .footer-bottom {
   max-width: 1400px;
   margin: 0 auto;
@@ -345,26 +401,29 @@ body {
   text-align: center;
 }
 
+/* Copyright text */
 .footer-bottom p {
   color: var(--primary-cream);
   font-size: 14px;
   margin: 0;
 }
 
-/* Modal */
+/* ===== MODAL (BMI Information) ===== */
+/* Modal overlay covering the entire screen */
 .modal {
-  display: none;
+  display: none;                      /* Hidden by default */
   position: fixed;
-  z-index: 2000;
+  z-index: 2000;                      /* Above all other content */
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent black */
+  backdrop-filter: blur(4px);         /* Blur background */
 }
 
+/* Modal content box */
 .modal-content {
   background-color: var(--white);
   margin: 5% auto;
@@ -373,9 +432,10 @@ body {
   max-width: 700px;
   position: relative;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-  animation: slideDown 0.3s ease;
+  animation: slideDown 0.3s ease;     /* Entrance animation */
 }
 
+/* Modal slide-down animation */
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -387,6 +447,7 @@ body {
   }
 }
 
+/* Modal close button */
 .close-modal {
   color: var(--medium-gray);
   position: absolute;
@@ -399,10 +460,12 @@ body {
   line-height: 1;
 }
 
+/* Close button hover effect */
 .close-modal:hover {
   color: var(--black);
 }
 
+/* Modal heading */
 .modal-content h2 {
   font-size: 28px;
   font-weight: 700;
@@ -410,6 +473,7 @@ body {
   margin-bottom: 20px;
 }
 
+/* Modal paragraph text */
 .modal-content p {
   font-size: 15px;
   line-height: 1.8;
@@ -417,6 +481,8 @@ body {
   margin-bottom: 24px;
 }
 
+/* ===== BMI TABLE ===== */
+/* Table showing BMI categories */
 .bmi-table {
   width: 100%;
   border-collapse: collapse;
@@ -425,11 +491,13 @@ body {
   overflow: hidden;
 }
 
+/* Table header styling */
 .bmi-table thead {
   background: var(--primary-dark);
   color: var(--white);
 }
 
+/* Table header cells */
 .bmi-table th {
   padding: 14px 16px;
   text-align: left;
@@ -437,6 +505,7 @@ body {
   font-size: 14px;
 }
 
+/* Table data cells */
 .bmi-table td {
   padding: 12px 16px;
   border-bottom: 1px solid var(--border);
@@ -444,20 +513,23 @@ body {
   color: var(--black);
 }
 
+/* Remove border from last row */
 .bmi-table tbody tr:last-child td {
   border-bottom: none;
 }
 
+/* Alternate row background color */
 .bmi-table tbody tr:nth-child(even) {
   background: var(--light-gray);
 }
 
+/* Table row hover effect */
 .bmi-table tbody tr:hover {
   background: var(--primary-cream);
 }
 
-/* Responsive Design */
-/* Tablet (768px - 1024px) */
+/* ===== RESPONSIVE DESIGN ===== */
+/* Tablet devices (768px - 1024px) */
 @media (max-width: 1024px) {
   .nav-container {
     padding: 0 24px;
@@ -481,62 +553,104 @@ body {
   }
 }
 
-/* Mobile (max-width: 768px) */
+/* Tablet devices (768px - 1024px) */
+@media (max-width: 1024px) {
+  /* Adjust navigation padding */
+  .nav-container {
+    padding: 0 24px;
+  }
+  
+  /* Reduce hero section padding */
+  .hero {
+    padding: 120px 24px 60px;
+  }
+  
+  /* Smaller hero heading */
+  .hero h1 {
+    font-size: 48px;
+  }
+  
+  /* Adjust features section padding */
+  .features {
+    padding: 80px 24px;
+  }
+  
+  /* Two-column grid for features */
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+
+/* Mobile devices (max-width: 768px) */
 @media (max-width: 768px) {
+  /* Reduce navigation padding */
   .nav-container {
     padding: 0 20px;
   }
   
+  /* Smaller navigation links */
   .nav-links {
     gap: 20px;
     font-size: 14px;
   }
   
+  /* Smaller logo */
   .logo {
     font-size: 20px;
   }
   
+  /* Adjust hero section for mobile */
   .hero {
     padding: 100px 20px 40px;
   }
   
+  /* Smaller hero heading */
   .hero h1 {
     font-size: 36px;
     line-height: 1.2;
   }
   
+  /* Smaller hero description */
   .hero p {
     font-size: 16px;
   }
   
+  /* Stack CTA buttons vertically */
   .cta-buttons {
     flex-direction: column;
     align-items: stretch;
     gap: 12px;
   }
   
+  /* Adjust button padding */
   .cta-button {
     padding: 14px 24px;
     font-size: 15px;
   }
   
+  /* Reduce features section padding */
   .features {
     padding: 60px 20px;
   }
   
+  /* Smaller features heading */
   .features h2 {
     font-size: 28px;
   }
   
+  /* Single column for feature cards */
   .features-grid {
     grid-template-columns: 1fr;
     gap: 24px;
   }
   
+  /* Maintain feature card padding */
   .feature-card {
     padding: 32px 24px;
   }
   
+  /* Adjust feature icon size */
   .feature-icon {
     width: 64px;
     height: 64px;
@@ -544,61 +658,71 @@ body {
     margin-bottom: 20px;
   }
   
+  /* Feature card title size */
   .feature-card h3 {
     font-size: 20px;
   }
   
+  /* Feature card description size */
   .feature-card p {
     font-size: 14px;
   }
   
-  /* Modal responsive */
+  /* Modal responsive adjustments */
   .modal-content {
     margin: 10% 20px;
     padding: 32px 24px;
   }
   
+  /* Smaller modal heading with space for close button */
   .modal-content h2 {
     font-size: 24px;
     margin-bottom: 16px;
     padding-right: 30px;
   }
   
+  /* Smaller modal text */
   .modal-content p {
     font-size: 14px;
   }
   
+  /* Adjust close button position */
   .close-modal {
     right: 16px;
     top: 16px;
     font-size: 28px;
   }
   
+  /* Smaller table text */
   .bmi-table {
     font-size: 13px;
   }
   
+  /* Reduce table cell padding */
   .bmi-table th,
   .bmi-table td {
     padding: 10px 12px;
     font-size: 13px;
   }
   
-  /* Footer responsive */
+  /* Footer responsive adjustments */
   .footer {
     padding: 40px 20px 20px;
   }
   
+  /* Single column footer layout */
   .footer-content {
     grid-template-columns: 1fr;
     gap: 32px;
     margin-bottom: 32px;
   }
   
+  /* Center footer sections */
   .footer-section {
     text-align: center;
   }
   
+  /* Adjust footer bottom padding */
   .footer-bottom {
     padding-top: 16px;
   }
@@ -608,6 +732,8 @@ body {
 
 <body>
 
+  <!-- ===== NAVIGATION BAR ===== -->
+  <!-- Fixed navigation bar with logo and links -->
   <nav class="navbar">
     <div class="nav-container">
       <a href="index.html" class="logo">NutriFit</a>
@@ -619,11 +745,14 @@ body {
     </div>
   </nav>
 
+  <!-- ===== HERO SECTION ===== -->
+  <!-- Main landing section with headline and CTA buttons -->
   <section class="hero" id="home">
     <div class="hero-container">
       <h1>Transform Your Health with <span class="gradient-text">NutriFit</span></h1>
       <p>Your complete nutrition and fitness companion. Track your <strong>BMI</strong>, calculate your nutritional needs, plan your meals, and achieve your health goals with personalized, science-backed recommendations.</p>
       
+      <!-- Call-to-action buttons -->
       <div class="cta-buttons">
         <button class="cta-button secondary" onclick="openBMIModal()">
           What is BMI?
@@ -639,8 +768,11 @@ body {
     </div>
   </section>
 
+  <!-- ===== FEATURES SECTION ===== -->
+  <!-- Showcase of main app features -->
   <section class="features" id="features">
     <div class="features-grid">
+      <!-- Feature 1: BMI & Calorie Calculator -->
       <div class="feature-card">
         <div class="feature-icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="40" height="40">
@@ -650,6 +782,8 @@ body {
         <h3>Smart BMI & Calorie Calculator</h3>
         <p>Get personalized calorie recommendations based on your goals</p>
       </div>
+      
+      <!-- Feature 2: Custom Meal Plans -->
       <div class="feature-card">
         <div class="feature-icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="40" height="40">
@@ -660,6 +794,8 @@ body {
         <h3>Custom Meal Plans</h3>
         <p>Detailed meal plans with complete macro breakdowns</p>
       </div>
+      
+      <!-- Feature 3: Progress Tracking -->
       <div class="feature-card">
         <div class="feature-icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="40" height="40">
@@ -672,13 +808,17 @@ body {
     </div>
   </section>
 
+  <!-- ===== FOOTER ===== -->
+  <!-- Site footer with links and information -->
   <footer class="footer">
     <div class="footer-content">
+      <!-- Footer section 1: Logo and tagline -->
       <div class="footer-section">
         <h3 class="footer-logo">NutriFit</h3>
         <p class="footer-tagline">Your complete nutrition and fitness companion</p>
       </div>
       
+      <!-- Footer section 2: Quick navigation links -->
       <div class="footer-section">
         <h4>Quick Links</h4>
         <ul class="footer-links">
@@ -689,6 +829,7 @@ body {
         </ul>
       </div>
       
+      <!-- Footer section 3: Resource links -->
       <div class="footer-section">
         <h4>Resources</h4>
         <ul class="footer-links">
@@ -698,6 +839,7 @@ body {
         </ul>
       </div>
       
+      <!-- Footer section 4: About Us links -->
       <div class="footer-section">
         <h4>About Us</h4>
         <ul class="footer-links">
@@ -706,18 +848,21 @@ body {
       </div>
     </div>
     
+    <!-- Copyright information -->
     <div class="footer-bottom">
       <p>&copy; 2026 NutriFit. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- BMI Modal -->
+  <!-- ===== BMI INFORMATION MODAL ===== -->
+  <!-- Modal popup with BMI information and categories table -->
   <div id="bmiModal" class="modal">
     <div class="modal-content">
       <span class="close-modal" onclick="closeBMIModal()">&times;</span>
       <h2>BMI Introduction</h2>
       <p>BMI is a measurement of a person's leanness or corpulence based on their height and weight, and is intended to quantify tissue mass. It is widely used as a general indicator of whether a person has a healthy body weight for their height. Specifically, the value obtained from the calculation of BMI is used to categorize whether a person is underweight, normal weight, overweight, or obese depending on what range the value falls between. These ranges of BMI vary based on factors such as region and age, and are sometimes further divided into subcategories such as severely underweight or very severely obese. Being overweight or underweight can have significant health effects, so while BMI is an imperfect measure of healthy body weight, it is a useful indicator of whether any additional testing or action is required. Refer to the table below to see the different categories based on BMI that are used by the calculator.</p>
       
+      <!-- BMI categories table -->
       <table class="bmi-table">
         <thead>
           <tr>
@@ -763,6 +908,8 @@ body {
   </div>
 
   <script>
+    /* ===== SMOOTH SCROLLING ===== */
+    /* Enable smooth scrolling for anchor links (e.g., #features) */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -776,17 +923,20 @@ body {
       });
     });
 
+    /* ===== BMI MODAL FUNCTIONS ===== */
+    /* Open BMI information modal */
     function openBMIModal() {
       document.getElementById('bmiModal').style.display = 'block';
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';  // Prevent background scrolling
     }
 
+    /* Close BMI information modal */
     function closeBMIModal() {
       document.getElementById('bmiModal').style.display = 'none';
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = 'auto';    // Re-enable scrolling
     }
 
-    // Close modal when clicking outside
+    /* Close modal when clicking outside the modal content */
     window.onclick = function(event) {
       const modal = document.getElementById('bmiModal');
       if (event.target === modal) {
@@ -794,7 +944,7 @@ body {
       }
     }
 
-    // Close modal with Escape key
+    /* Close modal when pressing Escape key */
     document.addEventListener('keydown', function(event) {
       if (event.key === 'Escape') {
         closeBMIModal();
