@@ -213,8 +213,6 @@ body {
   grid-row: 2;
   background: var(--light-gray);
   border-radius: 16px;
-  padding: 16px;
-}
   padding: 16px 24px;
   border: none;
   height: fit-content;
@@ -970,13 +968,38 @@ body {
 }
 
 /* Responsive */
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+  .calculator-section {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .calculator-card,
+  .results-grid-wrapper,
+  .calorie-cards-container {
+    width: 100%;
+  }
+  
+  .calorie-cards-section {
+    grid-column: 1 / 3;
+    grid-row: 2;
+  }
+}
+
+/* Mobile (max-width: 768px) */
 @media (max-width: 968px) {
   .nav-container {
     padding: 0 20px;
   }
   
   .nav-links {
-    gap: 24px;
+    gap: 20px;
+    font-size: 14px;
+  }
+  
+  .logo {
+    font-size: 20px;
   }
   
   .dashboard-content {
@@ -987,27 +1010,74 @@ body {
     grid-template-columns: 1fr;
   }
   
-  .calculator-card {
-    position: static;
-  }
-  
   .calculator-section {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto;
+    gap: 16px;
+  }
+  
+  .calculator-wrapper,
+  .results-categories-section,
+  .calorie-cards-section {
+    grid-column: 1;
+    grid-row: auto;
   }
   
   .calculator-card {
-    grid-column: 1;
-    grid-row: 1;
+    position: static;
+    width: 100%;
+    min-height: auto;
   }
   
-  .bmi-display-section {
-    grid-column: 1;
-    grid-row: 2;
+  .results-grid-wrapper,
+  .calorie-cards-container {
+    width: 100%;
+    height: auto;
+  }
+  
+  .results-categories-wrapper {
+    flex-direction: column;
+    height: auto;
   }
   
   .cards-row {
     grid-template-columns: 1fr;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .allergies-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .calorie-cards-wrapper {
+    gap: 12px;
+  }
+  
+  .card-title {
+    font-size: 20px;
+  }
+  
+  .card-subtitle {
+    font-size: 13px;
+  }
+}
+
+/* Small Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+  .allergies-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .nav-links {
+    gap: 16px;
+    font-size: 13px;
+  }
+  
+  .logo {
+    font-size: 18px;
   }
   
   .form-row {
@@ -1033,10 +1103,10 @@ body {
 <body>
   <nav class="navbar">
     <div class="nav-container">
-      <a href="/" class="logo">NutriFit</a>
+      <a href="index.html" class="logo">NutriFit</a>
       <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/calculator" class="active">Calculator</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="calculator.html" class="active">Calculator</a></li>
       </ul>
     </div>
   </nav>

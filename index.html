@@ -288,31 +288,99 @@ body {
 }
 
 /* Responsive Design */
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+  .nav-container {
+    padding: 0 24px;
+  }
+  
+  .hero {
+    padding: 120px 24px 60px;
+  }
+  
+  .hero h1 {
+    font-size: 48px;
+  }
+  
+  .features {
+    padding: 80px 24px;
+  }
+  
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+
+/* Mobile (max-width: 768px) */
 @media (max-width: 768px) {
   .nav-container {
     padding: 0 20px;
   }
   
   .nav-links {
-    gap: 24px;
+    gap: 20px;
+    font-size: 14px;
+  }
+  
+  .logo {
+    font-size: 20px;
   }
   
   .hero {
-    padding: 120px 20px 60px;
+    padding: 100px 20px 40px;
+  }
+  
+  .hero h1 {
+    font-size: 36px;
+    line-height: 1.2;
+  }
+  
+  .hero p {
+    font-size: 16px;
   }
   
   .cta-buttons {
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
+  }
+  
+  .cta-button {
+    padding: 14px 24px;
+    font-size: 15px;
   }
   
   .features {
-    padding: 80px 20px;
+    padding: 60px 20px;
+  }
+  
+  .features h2 {
+    font-size: 28px;
   }
   
   .features-grid {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+  
+  .feature-card {
+    padding: 32px 24px;
+  }
+  
+  .feature-icon {
+    width: 64px;
+    height: 64px;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .feature-card h3 {
+    font-size: 20px;
+  }
+  
+  .feature-card p {
+    font-size: 14px;
   }
 }
 </style>
@@ -322,10 +390,10 @@ body {
 
   <nav class="navbar">
     <div class="nav-container">
-      <a href="#" class="logo">NutriFit</a>
+      <a href="index.html" class="logo">NutriFit</a>
       <ul class="nav-links">
-        <li><a href="/" class="active">Home</a></li>
-        <li><a href="/calculator" onclick="sessionStorage.setItem('nutrifit-access', 'true')">Calculator</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="calculator.html">Calculator</a></li>
       </ul>
     </div>
   </nav>

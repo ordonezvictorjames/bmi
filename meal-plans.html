@@ -859,22 +859,49 @@ body {
 }
 
 /* Responsive Design */
+/* Tablet (768px - 1024px) */
 @media (max-width: 1200px) {
   .meal-plans-grid {
-    grid-template-columns: 350px 1fr;
-    gap: 24px;
+    grid-template-columns: 300px 1fr;
+    gap: 20px;
+  }
+  
+  .goal-selection {
+    padding: 20px;
+  }
+  
+  .daily-plans-wrapper {
+    padding: 20px;
   }
 }
 
+/* Tablet Portrait (max-width: 968px) */
 @media (max-width: 968px) {
+  .nav-container {
+    padding: 0 20px;
+  }
+  
+  .nav-links {
+    gap: 20px;
+    font-size: 14px;
+  }
+  
+  .logo {
+    font-size: 20px;
+  }
+  
+  .meal-plans-section {
+    padding: 100px 20px 40px;
+  }
+  
   .meal-plans-grid {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
   }
   
   .goal-selection {
     position: static;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
   
   .goal-options {
@@ -885,53 +912,226 @@ body {
   .goal-option {
     flex-direction: column;
     text-align: center;
-    padding: 12px;
-    gap: 8px;
+    padding: 12px 8px;
+    gap: 6px;
+  }
+  
+  .goal-icon {
+    font-size: 16px;
+  }
+  
+  .goal-calories,
+  .goal-name {
+    font-size: 12px;
   }
   
   .averages-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
   }
-}
-
-@media (max-width: 768px) {
-  .days-tabs {
-    gap: 4px;
-    padding: 6px;
+  
+  .average-item {
+    padding: 10px 12px;
   }
   
-  .day-tab {
-    padding: 8px 12px;
-    font-size: 12px;
-    min-width: 60px;
+  .average-label {
+    font-size: 11px;
+  }
+  
+  .average-value {
+    font-size: 14px;
   }
   
   .meals-grid {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 16px;
+  }
+}
+
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  .meal-plans-section {
+    padding: 90px 16px 32px;
+  }
+  
+  .days-tabs {
+    gap: 4px;
+    padding: 4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .day-tab {
+    padding: 8px 12px;
+    font-size: 11px;
+    min-width: 70px;
+    white-space: nowrap;
+  }
+  
+  .tabs-calorie-display {
+    padding: 6px 16px;
+    margin-left: 8px;
+  }
+  
+  .tabs-calorie-number {
+    font-size: 16px;
+  }
+  
+  .tabs-calorie-label {
+    font-size: 12px;
   }
   
   .macro-legend {
     grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .day-summary {
     gap: 8px;
   }
   
-  .summary-chip {
-    padding: 6px 8px;
-    font-size: 11px;
+  .macro-item {
+    padding: 8px;
+  }
+  
+  .macro-text {
+    font-size: 12px;
+  }
+  
+  .macro-value {
+    font-size: 14px;
   }
   
   .goal-options {
     grid-template-columns: 1fr;
+    gap: 10px;
   }
   
   .goal-option {
     flex-direction: row;
     text-align: left;
+    padding: 12px;
+  }
+  
+  .goal-icon {
+    font-size: 18px;
+  }
+  
+  .goal-calories,
+  .goal-name {
+    font-size: 13px;
+  }
+  
+  .meal-card {
+    padding: 16px;
+    min-height: auto;
+  }
+  
+  .meal-type {
+    font-size: 9px;
+    padding: 4px 8px;
+  }
+  
+  .meal-name {
+    font-size: 14px;
+    padding-right: 60px;
+  }
+  
+  .meal-calories {
+    font-size: 14px;
+    padding: 4px 8px;
+  }
+  
+  .meal-image {
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+  }
+  
+  .meal-macros {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  
+  .meal-macro {
+    padding: 8px 4px;
+  }
+  
+  .meal-macro-value {
+    font-size: 11px;
+  }
+  
+  .meal-macro-label {
+    font-size: 8px;
+  }
+  
+  .daily-plans-wrapper {
+    padding: 16px;
+  }
+  
+  .goal-selection {
+    padding: 16px;
+  }
+  
+  .goal-header {
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  
+  .goal-title {
+    font-size: 20px;
+  }
+}
+
+/* Small Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+  .nav-links {
+    gap: 16px;
+    font-size: 13px;
+  }
+  
+  .logo {
+    font-size: 18px;
+  }
+  
+  .meal-plans-section {
+    padding: 80px 12px 24px;
+  }
+  
+  .day-tab {
+    padding: 6px 10px;
+    font-size: 10px;
+    min-width: 60px;
+  }
+  
+  .tabs-calorie-display {
+    padding: 4px 12px;
+  }
+  
+  .tabs-calorie-number {
+    font-size: 14px;
+  }
+  
+  .tabs-calorie-label {
+    font-size: 11px;
+  }
+  
+  .macro-legend {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .averages-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .meal-macros {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  
+  .goal-title {
+    font-size: 18px;
+  }
+  
+  .averages-title {
+    font-size: 14px;
   }
 }
 
@@ -1411,10 +1611,10 @@ body {
 
   <nav class="navbar">
     <div class="nav-container">
-      <a href="/" class="logo">NutriFit</a>
+      <a href="index.html" class="logo">NutriFit</a>
       <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/calculator">Calculator</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="calculator.html">Calculator</a></li>
       </ul>
     </div>
   </nav>
