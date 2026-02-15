@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard - NutriFit</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="NutriFit - Your complete nutrition and fitness companion. Calculate BMI, get personalized calorie recommendations, and achieve your health goals with science-backed insights.">
+<meta name="keywords" content="BMI calculator, calorie calculator, nutrition, fitness, health, weight loss, meal planning">
+<meta name="author" content="NutriFit">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2'><path stroke-linecap='round' stroke-linejoin='round' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'/><path stroke-linecap='round' stroke-linejoin='round' d='M8 12h.01M12 8v.01M16 12h.01'/></svg>">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary-dark: #3A5A40;
+  --primary-medium: #588157;
+  --primary-light: #A3B18A;
+  --primary-cream: #DAD7CD;
+  --black: #000000;
+  --dark-gray: #1a1a1a;
+  --medium-gray: #666666;
+  --light-gray: #f5f5f5;
+  --white: #ffffff;
+  --border: #e0e0e0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: var(--black);
+  background: #E8EAE9;
+}
+
+/* Navigation */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  padding: 12px 0;
+  z-index: 1000;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px 0 40px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.logo::before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23588157' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'/%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M8 12h.01M12 8v.01M16 12h.01'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: block;
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--medium-gray);
+  font-weight: 500;
+  font-size: 15px;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-dark);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a.active {
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* Dashboard Content */
+.dashboard-content {
+  padding: 100px 40px 40px;
+  max-width: 1600px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.calculator-section {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto;
+  gap: 16px;
+  align-items: start;
+  justify-content: center;
+  width: 100%;
+}
+
+.calorie-cards-section {
+  grid-column: 3;
+  grid-row: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.results-categories-section {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.results-categories-header {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.results-categories-wrapper {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  gap: 16px;
+  height: 500px;
+}
+
+.calculator-wrapper {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.allergies-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  margin-top: 0;
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.calculator-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  height: fit-content;
+  min-height: 500px;
+  width: 450px;
+}
+
+.allergies-card-wrapper {
+  grid-column: 1;
+  grid-row: 2;
+  background: var(--light-gray);
+  border-radius: 16px;
+  padding: 16px;
+}
+  padding: 16px 24px;
+  border: none;
+  height: fit-content;
+}
+
+.basic-info-card {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  border: none;
+  margin-bottom: 0;
+  max-width: 100%;
+}
+
+.allergies-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 16px;
+}
+
+.allergies-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.allergy-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--light-gray);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--black);
+  cursor: pointer;
+}
+
+.allergy-item input[type="checkbox"] {
+  display: none;
+}
+
+.allergy-item .checkbox-custom {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--white);
+}
+
+.allergy-item .check-icon {
+  opacity: 0;
+  color: var(--white);
+}
+
+.allergy-item input[type="checkbox"]:checked + .checkbox-custom {
+  background: var(--black);
+  border-color: var(--black);
+}
+
+.allergy-item input[type="checkbox"]:checked + .checkbox-custom .check-icon {
+  opacity: 1;
+}
+
+.allergy-item.checked {
+  background: #3A5A40;
+  border-color: #3A5A40;
+  color: var(--white);
+}
+
+.allergy-item:has(input[type="checkbox"]:checked) {
+  background: #3A5A40;
+  border-color: #3A5A40;
+  color: var(--white);
+}
+
+.allergy-item {
+  position: relative;
+}
+
+.allergy-item .tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--black);
+  color: var(--white);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  margin-bottom: 8px;
+  z-index: 10;
+}
+
+.allergy-item .tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--black);
+}
+
+.allergy-item:hover .tooltip {
+  opacity: 1;
+}
+
+.cards-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 0;
+}
+
+.card-header {
+  text-align: left;
+  margin-bottom: 12px;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #3A5A40;
+  margin-bottom: 6px;
+}
+
+.card-subtitle {
+  font-size: 14px;
+  color: var(--medium-gray);
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 6px;
+}
+
+.input, .select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  background: #E8EAE9;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.input:focus, .select:focus {
+  outline: none;
+  border-color: var(--primary-dark);
+}
+
+.select option {
+  background: var(--white);
+  color: var(--black);
+}
+
+.select option:hover {
+  background: var(--white);
+  color: var(--black);
+}
+
+.select option:checked {
+  background: #3A5A40;
+  color: var(--white);
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--primary-dark);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  margin-top: 12px;
+}
+
+.allergies-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.allergy-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--white);
+}
+
+.allergy-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-custom {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--white);
+}
+
+.checkbox-custom .check-icon {
+  opacity: 0;
+  color: var(--white);
+}
+
+.allergy-checkbox input[type="checkbox"]:checked + .checkbox-custom {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.allergy-checkbox input[type="checkbox"]:checked + .checkbox-custom .check-icon {
+  opacity: 1;
+}
+
+.allergy-checkbox:has(input[type="checkbox"]:checked) {
+  background: #3A5A40;
+  border-color: #3A5A40;
+}
+
+.allergy-checkbox:has(input[type="checkbox"]:checked) .allergy-label {
+  color: var(--white);
+}
+
+.allergy-checkbox:has(input[type="checkbox"]:checked) .allergy-icon {
+  color: var(--white);
+}
+
+.allergy-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--black);
+  flex-shrink: 0;
+}
+
+.allergy-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.allergy-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--black);
+  flex: 1;
+}
+
+.results-area {
+  background: transparent;
+  border-radius: 0;
+  padding: 16px 24px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.results-header {
+  text-align: left;
+  margin-bottom: 12px;
+}
+
+.results-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #3A5A40;
+  margin-bottom: 6px;
+}
+
+.results-subtitle {
+  font-size: 13px;
+  color: var(--medium-gray);
+}
+
+.bmi-display-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  height: 100%;
+  border: none;
+}
+
+.bmi-categories-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  height: auto;
+  align-self: start;
+  border: none;
+}
+
+.third-card-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--light-gray);
+  padding: 16px;
+  border-radius: 16px;
+  height: 100%;
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.results-wrapper-card {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.results-header {
+  text-align: left;
+  margin-bottom: 0;
+}
+
+.bmi-main-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.results-grid-wrapper {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  width: 450px;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 12px;
+}
+
+.bmi-and-calories-row {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+  width: 100%;
+}
+
+.bmi-categories-section {
+  display: flex;
+  align-items: start;
+  padding-top: 60px;
+}
+
+.calorie-section {
+  display: flex;
+  flex: 1;
+}
+
+.calorie-cards-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.calorie-cards {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+}
+
+.bmi-main {
+  background: var(--light-gray);
+  border: 2px solid var(--black);
+  border-radius: 16px;
+  padding: 12px 14px;
+  text-align: center;
+}
+
+.bmi-label {
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--medium-gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.bmi-value {
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 6px;
+  color: var(--black);
+  line-height: 1;
+}
+
+.bmi-status {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.bmi-intro-content {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--black);
+}
+
+.bmi-intro-content p {
+  margin-bottom: 14px;
+}
+
+.bmi-intro-content p:last-child {
+  margin-bottom: 0;
+}
+
+.bmi-categories-wrapper {
+  margin-top: 16px;
+}
+
+.bmi-categories {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+}
+
+.bmi-categories-card {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  width: 450px;
+}
+
+.calorie-cards-container {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  width: 450px;
+  height: 500px;
+}
+
+.calorie-cards-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.view-meal-plan-btn {
+  margin-top: 16px;
+}
+
+.bmi-categories h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.bmi-categories-card h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+}
+
+.category-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: var(--light-gray);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.category-label {
+  color: var(--black);
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.category-range {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--black);
+}
+
+.calorie-section {
+  margin-top: 0;
+}
+
+.calorie-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.calorie-card {
+  background: var(--light-gray);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  text-align: center;
+}
+
+.calorie-card h4 {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--medium-gray);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.calorie-number {
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--black);
+  margin-bottom: 4px;
+  line-height: 1;
+}
+
+.calorie-label {
+  font-size: 12px;
+  color: var(--medium-gray);
+  font-weight: 500;
+}
+
+.calorie-note {
+  font-size: 11px;
+  color: var(--medium-gray);
+  margin-top: 4px;
+}
+
+.dashboard-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--black);
+  margin-bottom: 40px;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .nav-container {
+    padding: 0 20px;
+  }
+  
+  .nav-links {
+    gap: 24px;
+  }
+  
+  .dashboard-content {
+    padding: 100px 20px 40px;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .calculator-card {
+    position: static;
+  }
+  
+  .calculator-section {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+  
+  .calculator-card {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  
+  .bmi-display-section {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  
+  .cards-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .allergies-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .calorie-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .bmi-display {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+</style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">NutriFit</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html" class="active">Calculator</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="dashboard-content">
+    <div class="dashboard-grid">
+      <div class="calculator-section">
+        <!-- Calculator Card -->
+        <div class="calculator-wrapper">
+          <div class="card-header">
+            <h1 class="card-title">BMI Calculator</h1>
+            <p class="card-subtitle">Enter your details to calculate your BMI and calorie needs</p>
+          </div>
+          
+          <div class="calculator-card">
+            <form id="calculatorForm">
+              <div class="cards-row">
+                <div class="basic-info-card">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="label">Weight (kg)</label>
+                  <input type="number" class="input" id="weight" placeholder="Ex. 70" required>
+                </div>
+                <div class="form-group">
+                  <label class="label">Height (cm)</label>
+                  <input type="number" class="input" id="height" placeholder="Ex. 175" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="label">Age</label>
+                  <input type="number" class="input" id="age" placeholder="Ex. 30" required>
+                </div>
+                <div class="form-group">
+                  <label class="label">Gender</label>
+                  <select class="select" id="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="label">Activity Level</label>
+                <select class="select" id="activity" required>
+                  <option value="1.2">Sedentary (little or no exercise)</option>
+                  <option value="1.375">Lightly Active (light exercise 1-3 times/week)</option>
+                  <option value="1.55" selected>Moderately Active (exercise 4-5 times/week)</option>
+                  <option value="1.725">Very Active (hard exercise 6-7 times/week)</option>
+                  <option value="1.9">Extremely Active (very hard exercise, physical job)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="label">Do you have any food allergies?</label>
+                <select class="select" id="hasAllergies">
+                  <option value="no">No</option>
+                  <option value="yes">Yes</option>
+                </select>
+              </div>
+
+              <!-- Food Allergies Section -->
+              <div id="allergiesSection" style="display: none; margin-top: 16px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                  <h3 style="font-size: 16px; font-weight: 700; color: var(--black); margin: 0;">Common Food Allergies</h3>
+                  <button type="button" id="clearAllergies" style="background: transparent; border: 1px solid var(--border); color: var(--black); padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">Clear Selection</button>
+                </div>
+                <div class="allergies-list">
+                    <label class="allergy-item">
+                      <input type="checkbox" name="allergy" value="shellfish">
+                      <span class="checkbox-custom">
+                        <svg class="check-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                          <path d="M11.6667 3.5L5.25 9.91667L2.33333 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                      <span>Shellfish</span>
+                      <span class="tooltip">Includes shrimp, crab, lobster, clams, oysters</span>
+                    </label>
+                    <label class="allergy-item">
+                      <input type="checkbox" name="allergy" value="fish">
+                      <span class="checkbox-custom">
+                        <svg class="check-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                          <path d="M11.6667 3.5L5.25 9.91667L2.33333 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                      <span>Fish</span>
+                    </label>
+                    <label class="allergy-item">
+                      <input type="checkbox" name="allergy" value="eggs">
+                      <span class="checkbox-custom">
+                        <svg class="check-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                          <path d="M11.6667 3.5L5.25 9.91667L2.33333 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                      <span>Eggs</span>
+                    </label>
+                    <label class="allergy-item">
+                      <input type="checkbox" name="allergy" value="milk">
+                      <span class="checkbox-custom">
+                        <svg class="check-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                          <path d="M11.6667 3.5L5.25 9.91667L2.33333 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                      <span>Milk / Dairy</span>
+                    </label>
+                    <label class="allergy-item">
+                      <input type="checkbox" name="allergy" value="peanuts">
+                      <span class="checkbox-custom">
+                        <svg class="check-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                          <path d="M11.6667 3.5L5.25 9.91667L2.33333 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                      <span>Peanuts</span>
+                    </label>
+                    <label class="allergy-item">
+                      <input type="checkbox" name="allergy" value="tree_nuts">
+                      <span class="checkbox-custom">
+                        <svg class="check-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                          <path d="M11.6667 3.5L5.25 9.91667L2.33333 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                      <span>Tree Nuts</span>
+                      <span class="tooltip">Includes almonds, walnuts, cashews, pistachios</span>
+                    </label>
+                    <label class="allergy-item">
+                      <input type="checkbox" name="allergy" value="soy">
+                      <span class="checkbox-custom">
+                        <svg class="check-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                          <path d="M11.6667 3.5L5.25 9.91667L2.33333 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                      <span>Soy</span>
+                      <span class="tooltip">Includes tofu, soy sauce, edamame, soy milk</span>
+                    </label>
+                    <label class="allergy-item">
+                      <input type="checkbox" name="allergy" value="wheat">
+                      <span class="checkbox-custom">
+                        <svg class="check-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                          <path d="M11.6667 3.5L5.25 9.91667L2.33333 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                      <span>Wheat</span>
+                      <span class="tooltip">Includes bread, pasta, cereals, baked goods</span>
+                    </label>
+                    <label class="allergy-item">
+                      <input type="checkbox" name="allergy" value="sesame">
+                      <span class="checkbox-custom">
+                        <svg class="check-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                          <path d="M11.6667 3.5L5.25 9.91667L2.33333 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                      <span>Sesame</span>
+                    </label>
+                    <label class="allergy-item">
+                      <input type="checkbox" name="allergy" value="chocolate">
+                      <span class="checkbox-custom">
+                        <svg class="check-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                          <path d="M11.6667 3.5L5.25 9.91667L2.33333 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                      <span>Chocolate / Cocoa</span>
+                    </label>
+                    <label class="allergy-item">
+                      <input type="checkbox" name="allergy" value="chicken">
+                      <span class="checkbox-custom">
+                        <svg class="check-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                          <path d="M11.6667 3.5L5.25 9.91667L2.33333 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                      <span>Chicken</span>
+                    </label>
+                    <label class="allergy-item">
+                      <input type="checkbox" name="allergy" value="pork">
+                      <span class="checkbox-custom">
+                        <svg class="check-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                          <path d="M11.6667 3.5L5.25 9.91667L2.33333 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                      <span>Pork</span>
+                    </label>
+                  </div>
+              </div>
+            </div>
+
+          <button type="submit" class="btn">Calculate Metrics</button>
+        </div>
+      </div>
+
+          </form>
+        </div>
+      </div>
+
+      <!-- Results and Categories Wrapper -->
+      <div class="results-categories-section">
+        <div class="results-categories-header">
+          <div class="results-header">
+            <h2 class="results-title">Your Results</h2>
+            <p class="results-subtitle">BMI and daily calorie recommendations</p>
+          </div>
+        </div>
+        
+        <div class="results-categories-wrapper">
+          <!-- Your Results Card -->
+          <div class="bmi-display-section">
+            <div class="results-wrapper-card">
+              <div class="bmi-main-wrapper">
+                <div class="results-grid-wrapper">
+                  <div class="bmi-main">
+                    <div class="bmi-label">Body Mass Index</div>
+                    <div class="bmi-value" id="bmiValue">--</div>
+                    <div class="bmi-status" id="bmiStatus">Calculate to see</div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- BMI Categories Card -->
+              <div class="bmi-categories-card" style="margin-top: 12px;">
+                <div class="category-list">
+                  <div class="category-item">
+                    <span class="category-label">Underweight</span>
+                    <span class="category-range">< 18.5</span>
+                  </div>
+                  <div class="category-item">
+                    <span class="category-label">Normal</span>
+                    <span class="category-range">18.5 - 24.9</span>
+                  </div>
+                  <div class="category-item">
+                    <span class="category-label">Overweight</span>
+                    <span class="category-range">25 - 29.9</span>
+                  </div>
+                  <div class="category-item">
+                    <span class="category-label">Obese</span>
+                    <span class="category-range">≥ 30</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="calorie-section" id="calorieSection" style="display: none;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Calorie Cards Column -->
+      <div class="calorie-cards-section">
+        <div class="results-header">
+          <h2 class="results-title">Daily Recommendations</h2>
+          <p class="results-subtitle">Personalized calorie targets for your goals</p>
+        </div>
+        
+        <div class="calorie-cards-container">
+          <div class="calorie-cards-wrapper">
+            <div class="calorie-card" id="lossCard" style="display: none;">
+              <h4>Weight Loss</h4>
+              <div class="calorie-number" id="lossCalories">--</div>
+              <div class="calorie-label">calories/day</div>
+              <div class="calorie-note">-500 cal deficit</div>
+            </div>
+            
+            <div class="calorie-card" id="tdeeCard" style="display: none;">
+              <h4>Maintenance</h4>
+              <div class="calorie-number" id="tdeeCalories">--</div>
+              <div class="calorie-label">calories/day</div>
+              <div class="calorie-note">TDEE</div>
+            </div>
+            
+            <div class="calorie-card" id="gainCard" style="display: none;">
+              <h4>Weight Gain</h4>
+              <div class="calorie-number" id="gainCalories">--</div>
+              <div class="calorie-label">calories/day</div>
+              <div class="calorie-note">+500 cal surplus</div>
+            </div>
+          </div>
+          
+          <button type="button" class="btn view-meal-plan-btn" id="viewMealPlanBtn" onclick="window.location.href='meal-plans.html'" disabled style="opacity: 0.5; cursor: not-allowed;">View Meal Plan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Toggle allergies section visibility
+    document.getElementById('hasAllergies').addEventListener('change', function(e) {
+      const allergiesSection = document.getElementById('allergiesSection');
+      if (e.target.value === 'yes') {
+        allergiesSection.style.display = 'block';
+      } else {
+        allergiesSection.style.display = 'none';
+      }
+    });
+
+    // Handle allergy checkbox styling
+    document.querySelectorAll('.allergy-item input[type="checkbox"]').forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        if (this.checked) {
+          this.closest('.allergy-item').classList.add('checked');
+        } else {
+          this.closest('.allergy-item').classList.remove('checked');
+        }
+      });
+    });
+
+    // Clear all allergy selections
+    document.getElementById('clearAllergies').addEventListener('click', function() {
+      const allergyCheckboxes = document.querySelectorAll('input[name="allergy"]');
+      allergyCheckboxes.forEach(checkbox => {
+        checkbox.checked = false;
+        checkbox.closest('.allergy-item').classList.remove('checked');
+      });
+    });
+
+    document.getElementById('calculatorForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const weight = parseFloat(document.getElementById('weight').value);
+      const height = parseFloat(document.getElementById('height').value);
+      const age = parseFloat(document.getElementById('age').value);
+      const gender = document.getElementById('gender').value;
+      const activity = parseFloat(document.getElementById('activity').value);
+      
+      const allergyCheckboxes = document.querySelectorAll('input[name="allergy"]:checked');
+      const selectedAllergies = Array.from(allergyCheckboxes).map(cb => cb.value);
+      
+      const bmi = (weight / ((height / 100) ** 2)).toFixed(1);
+      
+      let category;
+      if (bmi < 18.5) category = 'Underweight';
+      else if (bmi < 25) category = 'Normal';
+      else if (bmi < 30) category = 'Overweight';
+      else category = 'Obese';
+      
+      let bmr;
+      if (gender === 'male') {
+        bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+      } else {
+        bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+      }
+      
+      const tdee = Math.round(bmr * activity);
+      const lossCalories = Math.round(tdee - 500);
+      const gainCalories = Math.round(tdee + 500);
+      
+      localStorage.setItem('nutrifit-calculations', JSON.stringify({
+        weight, height, age, gender, activity,
+        allergies: selectedAllergies,
+        bmi, category, bmr, tdee, lossCalories, gainCalories
+      }));
+      
+      displayResults(bmi, category, tdee, lossCalories, gainCalories);
+    });
+    
+    function displayResults(bmi, category, tdee, lossCalories, gainCalories) {
+      // Update BMI card in calculator section
+      document.getElementById('bmiValue').textContent = bmi;
+      document.getElementById('bmiStatus').textContent = category;
+      
+      // Update calorie cards
+      document.getElementById('lossCalories').textContent = lossCalories;
+      document.getElementById('tdeeCalories').textContent = tdee;
+      document.getElementById('gainCalories').textContent = gainCalories;
+      document.getElementById('lossCard').style.display = 'block';
+      document.getElementById('tdeeCard').style.display = 'block';
+      document.getElementById('gainCard').style.display = 'block';
+      
+      // Enable View Meal Plan button
+      const viewMealPlanBtn = document.getElementById('viewMealPlanBtn');
+      viewMealPlanBtn.disabled = false;
+      viewMealPlanBtn.style.opacity = '1';
+      viewMealPlanBtn.style.cursor = 'pointer';
+    }
+    
+  </script>
+</body>
+</html>
