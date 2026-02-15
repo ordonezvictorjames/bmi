@@ -1879,9 +1879,15 @@ body {
         <div class="macro-distribution">
           <div class="macro-title">
             <h4>Macro Distribution</h4>
-            <a href="#" class="print-btn" onclick="window.print(); return false;">
-              🖨️ Print Plan
-            </a>
+            <div style="display: flex; align-items: center; gap: 16px;">
+              <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: var(--black); cursor: pointer;">
+                <input type="checkbox" id="filipinoFoodsOnly" style="width: 18px; height: 18px; cursor: pointer;">
+                <span>Filipino Foods only</span>
+              </label>
+              <a href="#" class="print-btn" onclick="window.print(); return false;">
+                🖨️ Print Plan
+              </a>
+            </div>
           </div>
           <div class="macro-bar">
             <div class="macro-segment protein" style="width: ${proteinPercent}%"></div>
