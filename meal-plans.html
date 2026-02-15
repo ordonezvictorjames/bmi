@@ -181,7 +181,7 @@ body {
   justify-content: center;
   gap: 8px;
   padding: 10px 16px;
-  background: var(--black);
+  background: var(--medium-gray);
   border: none;
   border-radius: 8px;
   font-size: 13px;
@@ -430,9 +430,9 @@ body {
   align-items: baseline;
   gap: 6px;
   padding: 8px 24px;
-  background: rgba(163, 177, 138, 0.15);
-  border-radius: 50px;
-  border: 2px solid rgba(88, 129, 87, 0.3);
+  background: #3A5A40;
+  border-radius: 8px;
+  border: none;
   margin-left: auto;
   white-space: nowrap;
 }
@@ -440,14 +440,14 @@ body {
 .tabs-calorie-number {
   font-size: 20px;
   font-weight: 800;
-  color: var(--black);
+  color: var(--white);
   line-height: 1;
 }
 
 .tabs-calorie-label {
   font-size: 14px;
   font-weight: 500;
-  color: var(--medium-gray);
+  color: var(--white);
 }
 
 .day-tab {
@@ -523,7 +523,7 @@ body {
   align-items: baseline;
   gap: 8px;
   padding: 12px 40px;
-  background: rgba(16, 185, 129, 0.08);
+  background: transparent;
   border-radius: 50px;
   border: 2px solid rgba(16, 185, 129, 0.15);
 }
@@ -719,6 +719,8 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0;
+  margin-top: 20px;
+  gap: 32px;
 }
 
 .meal-type-wrapper {
@@ -733,10 +735,10 @@ body {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  padding: 6px 12px;
+  padding: 8px 16px;
   border-radius: 6px;
-  background: var(--light-gray);
-  color: var(--medium-gray);
+  background: #3A5A40;
+  color: var(--white);
   border: none;
 }
 
@@ -749,16 +751,13 @@ body {
 }
 
 .meal-calories-chip {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  font-size: 16px;
+  font-size: 10px;
   font-weight: 700;
-  color: var(--black);
-  background: rgba(16, 185, 129, 0.08);
+  color: var(--white);
+  background: #588157;
   padding: 8px 16px;
   border-radius: 20px;
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  border: 1px solid #588157;
   white-space: nowrap;
 }
 
@@ -808,8 +807,8 @@ body {
   width: 100%;
   padding: 10px 16px;
   margin-top: auto;
-  background: var(--black);
-  color: var(--white);
+  background: #A3B18A;
+  color: var(--black);
   border: none;
   border-radius: 8px;
   font-size: 13px;
@@ -820,7 +819,7 @@ body {
 }
 
 .see-ingredients-btn:hover {
-  background: var(--dark-gray);
+  background: #588157;
   transform: translateY(-1px);
 }
 
@@ -1262,15 +1261,15 @@ body {
 }
 
 .meal-type {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  color: var(--text-gray);
+  color: var(--white);
   text-transform: uppercase;
   letter-spacing: 1px;
-  padding: 6px 12px;
-  background: rgba(107, 114, 128, 0.1);
+  padding: 8px 16px;
+  background: #3A5A40;
   border-radius: 12px;
-  border: 1px solid rgba(107, 114, 128, 0.1);
+  border: 1px solid #3A5A40;
 }
 
 .meal-calories {
@@ -1315,28 +1314,28 @@ body {
 }
 
 .meal-macro-protein {
-  background: #3A5A40;
-  border-color: #3A5A40;
+  background: #DAD7CD;
+  border-color: #DAD7CD;
 }
 
 .meal-macro-protein .meal-macro-value,
 .meal-macro-protein .meal-macro-label {
-  color: var(--white);
+  color: var(--black);
 }
 
 .meal-macro-carbs {
-  background: #588157;
-  border-color: #588157;
+  background: #DAD7CD;
+  border-color: #DAD7CD;
 }
 
 .meal-macro-carbs .meal-macro-value,
 .meal-macro-carbs .meal-macro-label {
-  color: var(--white);
+  color: var(--black);
 }
 
 .meal-macro-fats {
-  background: #A3B18A;
-  border-color: #A3B18A;
+  background: #DAD7CD;
+  border-color: #DAD7CD;
 }
 
 .meal-macro-fats .meal-macro-value,
@@ -2221,10 +2220,10 @@ body {
       
       return `
         <div class="meal-card ${mealClass}">
-          <div class="meal-calories-chip">${meal.calories} cal</div>
           ${isAllergySafe && userAllergies.length > 0 ? '<div class="allergy-safe-badge">✓ Safe</div>' : ''}
           <div class="meal-header">
             <div class="meal-type">${type}</div>
+            <div class="meal-calories-chip">${meal.calories} cal</div>
           </div>
           <div class="meal-name">${meal.name}</div>
           <div class="meal-macros">
