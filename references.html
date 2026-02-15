@@ -1,22 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- 
+  NutriFit - References Page
+  Description: Resource page with links to nutrition and health references
+  Features: Reference cards with thumbnails, footer
+-->
 <meta charset="UTF-8">
 <title>References - NutriFit</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="NutriFit References - Sources and resources for nutrition and health information">
 
+<!-- Favicon links -->
 <link rel="icon" href="/image/logo.svg" type="image/svg+xml">
 <link rel="shortcut icon" href="/image/logo.svg" type="image/svg+xml">
 
+<!-- Google Fonts - Poppins -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+/* ===== CSS VARIABLES ===== */
+/* Define color scheme matching main site */
+/* ===== CSS VARIABLES ===== */
+/* Define color scheme matching main site */
 :root {
+  /* Primary green color palette */
   --primary-dark: #3A5A40;
   --primary-medium: #588157;
   --primary-light: #A3B18A;
   --primary-cream: #DAD7CD;
+  
+  /* Neutral colors */
   --black: #000000;
   --dark-gray: #1a1a1a;
   --medium-gray: #666666;
@@ -25,12 +39,14 @@
   --border: #e0e0e0;
 }
 
+/* ===== GLOBAL RESET ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* ===== BODY STYLES ===== */
 body {
   font-family: 'Poppins', sans-serif;
   line-height: 1.6;
@@ -38,7 +54,8 @@ body {
   background: var(--white);
 }
 
-/* Navigation */
+/* ===== NAVIGATION BAR ===== */
+/* Same navigation styling as main site */
 .navbar {
   position: fixed;
   top: 0;
@@ -120,13 +137,16 @@ body {
   width: 100%;
 }
 
-/* Main Content */
+/* ===== MAIN CONTENT AREA ===== */
+/* Container for page content */
 .main-content {
-  padding: 120px 40px 80px;
+  padding: 120px 40px 80px;    /* Extra top padding for fixed navbar */
   max-width: 1400px;
   margin: 0 auto;
 }
 
+/* ===== PAGE HEADER ===== */
+/* Page title and description */
 .page-header {
   text-align: center;
   margin-bottom: 60px;
@@ -146,14 +166,16 @@ body {
   margin: 0 auto;
 }
 
-/* Reference Cards */
+/* ===== REFERENCE CARDS ===== */
+/* Grid layout for reference cards */
 .references-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));  /* Responsive grid */
   gap: 32px;
   margin-bottom: 60px;
 }
 
+/* Individual reference card */
 .reference-card {
   background: var(--white);
   border: 1px solid var(--border);
@@ -164,12 +186,14 @@ body {
   display: block;
 }
 
+/* Card hover effect */
 .reference-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px);      /* Lift effect */
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   border-color: var(--primary-light);
 }
 
+/* Thumbnail image container */
 .reference-thumbnail {
   width: 100%;
   height: 240px;
@@ -181,16 +205,19 @@ body {
   position: relative;
 }
 
+/* Thumbnail image styling */
 .reference-thumbnail img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
+/* Card content area */
 .reference-content {
   padding: 24px;
 }
 
+/* Card title */
 .reference-title {
   font-size: 18px;
   font-weight: 600;
@@ -199,6 +226,7 @@ body {
   line-height: 1.4;
 }
 
+/* Card description */
 .reference-description {
   font-size: 14px;
   color: var(--medium-gray);
@@ -206,6 +234,7 @@ body {
   margin-bottom: 12px;
 }
 
+/* Card link with arrow */
 .reference-link {
   font-size: 13px;
   color: var(--primary-medium);
@@ -214,12 +243,14 @@ body {
   gap: 6px;
 }
 
+/* Arrow indicator */
 .reference-link::after {
   content: '→';
   font-size: 16px;
 }
 
-/* Footer */
+/* ===== FOOTER ===== */
+/* Same footer styling as main site */
 .footer {
   background: var(--primary-dark);
   color: var(--white);
@@ -341,6 +372,7 @@ body {
 
 <body>
 
+  <!-- ===== NAVIGATION BAR ===== -->
   <nav class="navbar">
     <div class="nav-container">
       <a href="index.html" class="logo">NutriFit</a>
@@ -352,14 +384,19 @@ body {
     </div>
   </nav>
 
+  <!-- ===== MAIN CONTENT ===== -->
   <main class="main-content">
+    <!-- Page header with title and description -->
     <div class="page-header">
       <h1>References</h1>
       <p>Trusted sources and resources that power NutriFit's nutrition and health recommendations</p>
     </div>
 
+    <!-- ===== REFERENCE CARDS GRID ===== -->
+    <!-- Grid of clickable cards linking to external resources -->
     <div class="references-grid">
       
+      <!-- Reference 1: Uncommon Food Allergies -->
       <a href="https://www.healthline.com/health/allergies/most-uncommon-food-allergies" target="_blank" class="reference-card">
         <div class="reference-thumbnail">
           <img src="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=800&h=480&fit=crop" alt="Food Allergies">
