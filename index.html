@@ -14,6 +14,10 @@
 
 <style>
 :root {
+  --primary-dark: #3A5A40;
+  --primary-medium: #588157;
+  --primary-light: #A3B18A;
+  --primary-cream: #DAD7CD;
   --black: #000000;
   --dark-gray: #1a1a1a;
   --medium-gray: #666666;
@@ -42,7 +46,7 @@ body {
   left: 0;
   right: 0;
   background: var(--white);
-  padding: 20px 0;
+  padding: 12px 0;
   z-index: 1000;
   border-bottom: 1px solid var(--border);
 }
@@ -53,25 +57,25 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 40px;
+  padding: 0 24px 0 40px;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 24px;
+  gap: 8px;
+  font-size: 18px;
   font-weight: 700;
-  color: var(--black);
+  color: var(--primary-dark);
   text-decoration: none;
   letter-spacing: -0.5px;
 }
 
 .logo::before {
   content: "";
-  width: 32px;
-  height: 32px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23000000' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'/%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M8 12h.01M12 8v.01M16 12h.01'/%3E%3C/svg%3E");
+  width: 24px;
+  height: 24px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23588157' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'/%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M8 12h.01M12 8v.01M16 12h.01'/%3E%3C/svg%3E");
   background-size: contain;
   background-repeat: no-repeat;
   display: block;
@@ -90,10 +94,31 @@ body {
   font-weight: 500;
   font-size: 15px;
   position: relative;
+  padding-bottom: 4px;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-dark);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
 }
 
 .nav-links a.active {
-  color: var(--black);
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.nav-links a.active::after {
+  width: 100%;
 }
 
 /* Hero Section */
@@ -120,11 +145,11 @@ body {
   line-height: 1.1;
   margin-bottom: 24px;
   letter-spacing: -2px;
-  color: var(--black);
+  color: var(--primary-dark);
 }
 
 .hero h1 .gradient-text {
-  color: var(--black);
+  color: var(--primary-dark);
 }
 
 .hero p {
@@ -156,17 +181,47 @@ body {
   align-items: center;
   gap: 10px;
   font-family: 'Poppins', sans-serif;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.cta-button::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.cta-button:hover::after {
+  width: 100%;
 }
 
 .cta-button.primary {
-  background: var(--black);
+  background: var(--primary-dark);
   color: var(--white);
+}
+
+.cta-button.primary:hover {
+  background: var(--primary-medium);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(58, 90, 64, 0.3);
 }
 
 .cta-button.secondary {
   background: var(--white);
   color: var(--black);
   border: 2px solid var(--black);
+}
+
+.cta-button.secondary:hover {
+  background: var(--light-gray);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Features Section */
@@ -185,37 +240,38 @@ body {
 }
 
 .feature-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  padding: 48px 36px;
+  background: var(--primary-medium);
+  border: 1px solid var(--primary-medium);
+  padding: 32px 24px;
   border-radius: 16px;
   position: relative;
 }
 
 .feature-icon {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   background: var(--white);
-  border: 2px solid var(--black);
-  border-radius: 16px;
+  border: 2px solid var(--white);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 28px;
-  font-size: 36px;
+  margin-bottom: 20px;
+  font-size: 28px;
 }
 
 .feature-card h3 {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
-  margin-bottom: 16px;
-  color: var(--black);
+  margin-bottom: 12px;
+  color: var(--white);
 }
 
 .feature-card p {
-  color: var(--medium-gray);
-  font-size: 15px;
-  line-height: 1.8;
+  color: var(--white);
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.95;
 }
 
 /* Footer */
@@ -269,7 +325,7 @@ body {
       <a href="#" class="logo">NutriFit</a>
       <ul class="nav-links">
         <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="dashboard.html">Calculator</a></li>
+        <li><a href="calculator.html">Calculator</a></li>
       </ul>
     </div>
   </nav>
@@ -277,10 +333,10 @@ body {
   <section class="hero" id="home">
     <div class="hero-container">
       <h1>Transform Your Health with <span class="gradient-text">NutriFit</span></h1>
-      <p>Your complete nutrition and fitness companion. Calculate your needs, plan your meals, and achieve your goals with personalized, science-backed recommendations.</p>
+      <p>Your complete nutrition and fitness companion. Track your BMI, calculate your nutritional needs, plan your meals, and achieve your health goals with personalized, science-backed recommendations.</p>
       
       <div class="cta-buttons">
-        <a href="dashboard.html" class="cta-button primary">
+        <a href="calculator.html" class="cta-button primary">
           Get Started Free
           <span>→</span>
         </a>
@@ -300,7 +356,7 @@ body {
           </svg>
         </div>
         <h3>Smart BMI & Calorie Calculator</h3>
-        <p>Get personalized calorie recommendations based on your unique goals, activity level, and body composition with our advanced algorithms.</p>
+        <p>Get personalized calorie recommendations based on your goals</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
@@ -310,7 +366,7 @@ body {
           </svg>
         </div>
         <h3>Custom Meal Plans</h3>
-        <p>Access detailed 7-day meal plans with complete macro breakdowns, shopping lists, and easy-to-follow recipes tailored to your needs.</p>
+        <p>Detailed meal plans with complete macro breakdowns</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
@@ -319,7 +375,7 @@ body {
           </svg>
         </div>
         <h3>Progress Tracking</h3>
-        <p>Visualize your nutrition and fitness journey with comprehensive analytics, charts, and insights to keep you motivated.</p>
+        <p>Visualize your nutrition and fitness journey</p>
       </div>
     </div>
   </section>

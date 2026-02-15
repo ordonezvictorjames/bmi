@@ -14,6 +14,10 @@
 
 <style>
 :root {
+  --primary-dark: #3A5A40;
+  --primary-medium: #588157;
+  --primary-light: #A3B18A;
+  --primary-cream: #DAD7CD;
   --black: #000000;
   --dark-gray: #1a1a1a;
   --medium-gray: #666666;
@@ -52,7 +56,7 @@ body {
   left: 0;
   right: 0;
   background: var(--white);
-  padding: 20px 0;
+  padding: 12px 0;
   z-index: 1000;
   border-bottom: 1px solid var(--border);
 }
@@ -63,25 +67,25 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 40px;
+  padding: 0 24px 0 40px;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 24px;
+  gap: 8px;
+  font-size: 18px;
   font-weight: 700;
-  color: var(--black);
+  color: var(--primary-dark);
   text-decoration: none;
   letter-spacing: -0.5px;
 }
 
 .logo::before {
   content: "";
-  width: 32px;
-  height: 32px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23000000' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'/%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M8 12h.01M12 8v.01M16 12h.01'/%3E%3C/svg%3E");
+  width: 24px;
+  height: 24px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23588157' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'/%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M8 12h.01M12 8v.01M16 12h.01'/%3E%3C/svg%3E");
   background-size: contain;
   background-repeat: no-repeat;
   display: block;
@@ -100,10 +104,31 @@ body {
   font-weight: 500;
   font-size: 15px;
   position: relative;
+  padding-bottom: 4px;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-dark);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
 }
 
 .nav-links a.active {
-  color: var(--black);
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.nav-links a.active::after {
+  width: 100%;
 }
 
 /* Main Content */
@@ -197,13 +222,17 @@ body {
 }
 
 .goal-option.active {
-  border-color: var(--medium-gray);
-  background: var(--medium-gray);
+  border-color: var(--primary-dark);
+  background: var(--primary-dark);
 }
 
 .goal-option.active .goal-calories,
 .goal-option.active .goal-name {
   color: var(--white);
+}
+
+.goal-option.active .goal-icon {
+  filter: brightness(0) invert(1);
 }
 
 .goal-icon {
@@ -361,9 +390,9 @@ body {
   align-items: baseline;
   gap: 6px;
   padding: 8px 24px;
-  background: rgba(16, 185, 129, 0.08);
+  background: rgba(163, 177, 138, 0.15);
   border-radius: 50px;
-  border: 2px solid rgba(16, 185, 129, 0.15);
+  border: 2px solid rgba(88, 129, 87, 0.3);
   margin-left: auto;
   white-space: nowrap;
 }
@@ -403,7 +432,7 @@ body {
 }
 
 .day-tab.active {
-  background: var(--black);
+  background: var(--primary-dark);
   color: var(--white);
 }
 
@@ -883,9 +912,9 @@ body {
   filter: brightness(1.1);
 }
 
-.macro-segment.protein { background: #3b82f6; }
-.macro-segment.carbs { background: #f59e0b; }
-.macro-segment.fats { background: #8b5cf6; }
+.macro-segment.protein { background: var(--primary-medium); }
+.macro-segment.carbs { background: var(--primary-light); }
+.macro-segment.fats { background: var(--primary-cream); }
 
 .macro-legend {
   display: grid;
@@ -917,10 +946,10 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.macro-dot.protein { background: #3b82f6; }
-.macro-dot.carbs { background: #f59e0b; }
-.macro-dot.fats { background: #8b5cf6; }
-.macro-dot.fiber { background: #10b981; }
+.macro-dot.protein { background: var(--primary-medium); }
+.macro-dot.carbs { background: var(--primary-light); }
+.macro-dot.fats { background: var(--primary-cream); }
+.macro-dot.fiber { background: var(--primary-dark); }
 
 .macro-text {
   font-size: 14px;
