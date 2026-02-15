@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 <!-- 
-  NutriFit - References Page
-  Description: Resource page with links to nutrition and health references
-  Features: Reference cards with thumbnails, footer
+  NutriFit - Team Page
+  Description: Team introduction and member profiles
+  Features: Team member cards, footer
 -->
 <meta charset="UTF-8">
-<title>References - NutriFit</title>
+<title>Our Team - NutriFit</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="NutriFit References - Sources and resources for nutrition and health information">
+<meta name="description" content="Meet the NutriFit team - dedicated professionals committed to your health and wellness journey">
 
 <!-- Favicon links -->
 <link rel="icon" href="/image/logo.svg" type="image/svg+xml">
@@ -19,8 +19,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* ===== CSS VARIABLES ===== */
-/* Define color scheme matching main site */
 /* ===== CSS VARIABLES ===== */
 /* Define color scheme matching main site */
 :root {
@@ -55,7 +53,6 @@ body {
 }
 
 /* ===== NAVIGATION BAR ===== */
-/* Same navigation styling as main site */
 .navbar {
   position: fixed;
   top: 0;
@@ -138,15 +135,13 @@ body {
 }
 
 /* ===== MAIN CONTENT AREA ===== */
-/* Container for page content */
 .main-content {
-  padding: 120px 40px 80px;    /* Extra top padding for fixed navbar */
+  padding: 120px 40px 80px;
   max-width: 1400px;
   margin: 0 auto;
 }
 
 /* ===== PAGE HEADER ===== */
-/* Page title and description */
 .page-header {
   text-align: center;
   margin-bottom: 60px;
@@ -164,93 +159,71 @@ body {
   color: var(--medium-gray);
   max-width: 700px;
   margin: 0 auto;
+  line-height: 1.8;
 }
 
-/* ===== REFERENCE CARDS ===== */
-/* Grid layout for reference cards */
-.references-grid {
+/* ===== TEAM GRID ===== */
+.team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));  /* Responsive grid */
-  gap: 32px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 40px;
   margin-bottom: 60px;
 }
 
-/* Individual reference card */
-.reference-card {
+/* ===== TEAM MEMBER CARD ===== */
+.team-member {
   background: var(--white);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
   transition: all 0.3s ease;
-  text-decoration: none;
-  display: block;
+  text-align: center;
 }
 
-/* Card hover effect */
-.reference-card:hover {
-  transform: translateY(-4px);      /* Lift effect */
+.team-member:hover {
+  transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   border-color: var(--primary-light);
 }
 
-/* Thumbnail image container */
-.reference-thumbnail {
+/* Team member photo */
+.member-photo {
   width: 100%;
-  height: 240px;
+  height: 300px;
   background: var(--primary-cream);
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  position: relative;
+  font-size: 80px;
+  color: var(--primary-dark);
 }
 
-/* Thumbnail image styling */
-.reference-thumbnail img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+/* Team member info */
+.member-info {
+  padding: 32px 24px;
 }
 
-/* Card content area */
-.reference-content {
-  padding: 24px;
-}
-
-/* Card title */
-.reference-title {
-  font-size: 18px;
-  font-weight: 600;
+.member-name {
+  font-size: 24px;
+  font-weight: 700;
   color: var(--primary-dark);
   margin-bottom: 8px;
-  line-height: 1.4;
 }
 
-/* Card description */
-.reference-description {
+.member-role {
+  font-size: 16px;
+  color: var(--primary-medium);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.member-bio {
   font-size: 14px;
   color: var(--medium-gray);
   line-height: 1.6;
-  margin-bottom: 12px;
-}
-
-/* Card link with arrow */
-.reference-link {
-  font-size: 13px;
-  color: var(--primary-medium);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-/* Arrow indicator */
-.reference-link::after {
-  content: '→';
-  font-size: 16px;
 }
 
 /* ===== FOOTER ===== */
-/* Same footer styling as main site */
 .footer {
   background: var(--primary-dark);
   color: var(--white);
@@ -321,7 +294,7 @@ body {
   margin: 0;
 }
 
-/* Responsive Design */
+/* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
   .nav-container {
     padding: 0 20px;
@@ -344,9 +317,9 @@ body {
     font-size: 16px;
   }
   
-  .references-grid {
+  .team-grid {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 32px;
   }
   
   .footer {
@@ -379,111 +352,95 @@ body {
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="calculator.html">Calculator</a></li>
-        <li><a href="references.html" class="active">References</a></li>
+        <li><a href="references.html">References</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- ===== MAIN CONTENT ===== -->
   <main class="main-content">
-    <!-- Page header with title and description -->
+    <!-- Page header -->
     <div class="page-header">
-      <h1>References</h1>
-      <p>Trusted sources and resources that power NutriFit's nutrition and health recommendations</p>
+      <h1>Meet Our Team</h1>
+      <p>Dedicated professionals committed to helping you achieve your health and wellness goals through science-backed nutrition guidance</p>
     </div>
 
-    <!-- ===== REFERENCE CARDS GRID ===== -->
-    <!-- Grid of clickable cards linking to external resources -->
-    <div class="references-grid">
+    <!-- ===== TEAM MEMBERS GRID ===== -->
+    <div class="team-grid">
       
-      <!-- Reference 1: Uncommon Food Allergies -->
-      <a href="https://www.healthline.com/health/allergies/most-uncommon-food-allergies" target="_blank" class="reference-card">
-        <div class="reference-thumbnail">
-          <img src="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=800&h=480&fit=crop" alt="Food Allergies">
+      <!-- Team Member 1 -->
+      <div class="team-member">
+        <div class="member-photo">👨‍⚕️</div>
+        <div class="member-info">
+          <h3 class="member-name">Dr. James Martinez</h3>
+          <p class="member-role">Lead Nutritionist</p>
+          <p class="member-bio">Board-certified nutritionist with over 15 years of experience in personalized nutrition planning and metabolic health.</p>
         </div>
-        <div class="reference-content">
-          <h3 class="reference-title">Most Uncommon Food Allergies</h3>
-          <p class="reference-description">Learn about rare food allergies and their symptoms from Healthline's comprehensive guide.</p>
-          <span class="reference-link">healthline.com</span>
-        </div>
-      </a>
+      </div>
 
-      <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10058883/" target="_blank" class="reference-card">
-        <div class="reference-thumbnail">
-          <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&h=480&fit=crop" alt="Medical Research">
+      <!-- Team Member 2 -->
+      <div class="team-member">
+        <div class="member-photo">👩‍💻</div>
+        <div class="member-info">
+          <h3 class="member-name">Sarah Chen</h3>
+          <p class="member-role">Fitness Specialist</p>
+          <p class="member-bio">Certified fitness trainer specializing in sustainable lifestyle changes and holistic wellness approaches.</p>
         </div>
-        <div class="reference-content">
-          <h3 class="reference-title">Nutrition Research Study</h3>
-          <p class="reference-description">Scientific research article from the National Center for Biotechnology Information.</p>
-          <span class="reference-link">ncbi.nlm.nih.gov</span>
-        </div>
-      </a>
+      </div>
 
-      <a href="https://www.healthline.com/nutrition/common-food-allergies" target="_blank" class="reference-card">
-        <div class="reference-thumbnail">
-          <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&h=480&fit=crop" alt="Common Food Allergies">
+      <!-- Team Member 3 -->
+      <div class="team-member">
+        <div class="member-photo">👨‍🍳</div>
+        <div class="member-info">
+          <h3 class="member-name">Chef Miguel Santos</h3>
+          <p class="member-role">Culinary Director</p>
+          <p class="member-bio">Professional chef creating delicious, nutritious Filipino meal plans that support your health goals.</p>
         </div>
-        <div class="reference-content">
-          <h3 class="reference-title">Common Food Allergies</h3>
-          <p class="reference-description">Comprehensive guide to the most common food allergies and how to manage them.</p>
-          <span class="reference-link">healthline.com</span>
-        </div>
-      </a>
+      </div>
 
-      <a href="https://www.fatsecret.co.za/" target="_blank" class="reference-card">
-        <div class="reference-thumbnail">
-          <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=800&h=480&fit=crop" alt="Nutrition Database">
+      <!-- Team Member 4 -->
+      <div class="team-member">
+        <div class="member-photo">👩‍🔬</div>
+        <div class="member-info">
+          <h3 class="member-name">Dr. Lisa Rodriguez</h3>
+          <p class="member-role">Research Director</p>
+          <p class="member-bio">PhD in Nutritional Science, ensuring all our recommendations are backed by the latest research.</p>
         </div>
-        <div class="reference-content">
-          <h3 class="reference-title">FatSecret Nutrition Database</h3>
-          <p class="reference-description">Comprehensive calorie counter and nutrition facts database for thousands of foods.</p>
-          <span class="reference-link">fatsecret.co.za</span>
-        </div>
-      </a>
+      </div>
 
-      <a href="https://andyou.ph" target="_blank" class="reference-card">
-        <div class="reference-thumbnail">
-          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&h=480&fit=crop" alt="Filipino Nutrition">
+      <!-- Team Member 5 -->
+      <div class="team-member">
+        <div class="member-photo">👨‍💼</div>
+        <div class="member-info">
+          <h3 class="member-name">Mark Thompson</h3>
+          <p class="member-role">Wellness Coach</p>
+          <p class="member-bio">Helping clients develop sustainable habits and achieve long-term health transformation.</p>
         </div>
-        <div class="reference-content">
-          <h3 class="reference-title">And You PH</h3>
-          <p class="reference-description">Filipino health and nutrition resource for local dietary recommendations.</p>
-          <span class="reference-link">andyou.ph</span>
-        </div>
-      </a>
+      </div>
 
-      <a href="https://brenontheroad.com/food-frenzy-classic-filipino-dishes-philippines/" target="_blank" class="reference-card">
-        <div class="reference-thumbnail">
-          <img src="https://images.unsplash.com/photo-1580822184713-fc5400e7fe10?w=800&h=480&fit=crop" alt="Filipino Dishes">
+      <!-- Team Member 6 -->
+      <div class="team-member">
+        <div class="member-photo">👩‍⚕️</div>
+        <div class="member-info">
+          <h3 class="member-name">Dr. Anna Reyes</h3>
+          <p class="member-role">Medical Advisor</p>
+          <p class="member-bio">Medical doctor specializing in preventive medicine and nutrition-based health interventions.</p>
         </div>
-        <div class="reference-content">
-          <h3 class="reference-title">Classic Filipino Dishes Guide</h3>
-          <p class="reference-description">Explore traditional Filipino cuisine and classic dishes from the Philippines.</p>
-          <span class="reference-link">brenontheroad.com</span>
-        </div>
-      </a>
-
-      <a href="https://www.scribd.com/document/861683610/Filipino-7day-Meal-Plan-Minimal-Icons" target="_blank" class="reference-card">
-        <div class="reference-thumbnail">
-          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=480&fit=crop" alt="Filipino Meal Plan">
-        </div>
-        <div class="reference-content">
-          <h3 class="reference-title">Filipino 7-Day Meal Plan</h3>
-          <p class="reference-description">Complete weekly meal planning guide featuring Filipino dishes and nutrition information.</p>
-          <span class="reference-link">scribd.com</span>
-        </div>
-      </a>
+      </div>
 
     </div>
   </main>
 
+  <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="footer-content">
+      <!-- Footer section 1: Logo and tagline -->
       <div class="footer-section">
         <h3 class="footer-logo">NutriFit</h3>
         <p class="footer-tagline">Your complete nutrition and fitness companion</p>
       </div>
       
+      <!-- Footer section 2: Quick navigation links -->
       <div class="footer-section">
         <h4>Quick Links</h4>
         <ul class="footer-links">
@@ -494,15 +451,17 @@ body {
         </ul>
       </div>
       
+      <!-- Footer section 3: Resource links -->
       <div class="footer-section">
         <h4>Resources</h4>
         <ul class="footer-links">
-          <li><a href="#" onclick="openBMIModal(); return false;">About BMI</a></li>
+          <li><a href="index.html#bmi">About BMI</a></li>
           <li><a href="calculator.html">Meal Plans</a></li>
           <li><a href="calculator.html">Nutrition Guide</a></li>
         </ul>
       </div>
       
+      <!-- Footer section 4: About Us links -->
       <div class="footer-section">
         <h4>About Us</h4>
         <ul class="footer-links">
@@ -511,6 +470,7 @@ body {
       </div>
     </div>
     
+    <!-- Copyright information -->
     <div class="footer-bottom">
       <p>&copy; 2026 NutriFit. All rights reserved.</p>
     </div>
