@@ -324,8 +324,8 @@ body {
     <div class="nav-container">
       <a href="#" class="logo">NutriFit</a>
       <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="calculator.html">Calculator</a></li>
+        <li><a href="/" class="active">Home</a></li>
+        <li><a href="/calculator" onclick="sessionStorage.setItem('nutrifit-access', 'true')">Calculator</a></li>
       </ul>
     </div>
   </nav>
@@ -336,7 +336,7 @@ body {
       <p>Your complete nutrition and fitness companion. Track your BMI, calculate your nutritional needs, plan your meals, and achieve your health goals with personalized, science-backed recommendations.</p>
       
       <div class="cta-buttons">
-        <a href="calculator.html" class="cta-button primary">
+        <a href="/calculator" class="cta-button primary" onclick="sessionStorage.setItem('nutrifit-access', 'true')">
           Get Started Free
           <span>→</span>
         </a>

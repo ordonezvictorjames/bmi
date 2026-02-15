@@ -1033,10 +1033,10 @@ body {
 <body>
   <nav class="navbar">
     <div class="nav-container">
-      <a href="index.html" class="logo">NutriFit</a>
+      <a href="/" class="logo">NutriFit</a>
       <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="calculator.html" class="active">Calculator</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/calculator" class="active">Calculator</a></li>
       </ul>
     </div>
   </nav>
@@ -1313,13 +1313,23 @@ body {
             </div>
           </div>
           
-          <button type="button" class="btn view-meal-plan-btn" id="viewMealPlanBtn" onclick="window.location.href='meal-plans.html'" disabled style="opacity: 0.5; cursor: not-allowed;">View Meal Plan</button>
+          <button type="button" class="btn view-meal-plan-btn" id="viewMealPlanBtn" onclick="window.location.href='/meal-plans'" disabled style="opacity: 0.5; cursor: not-allowed;">View Meal Plan</button>
         </div>
       </div>
     </div>
   </div>
 
   <script>
+    // Check if user came from index.html, if not redirect
+    if (!document.referrer.includes('index.html') && !sessionStorage.getItem('nutrifit-access')) {
+      // Allow access if coming from index.html or if session is set
+      if (document.referrer.includes(window.location.origin)) {
+        sessionStorage.setItem('nutrifit-access', 'true');
+      } else if (!sessionStorage.getItem('nutrifit-access')) {
+        window.location.href = 'index.html';
+      }
+    }
+
     // Toast notification function
     function showToast(message) {
       // Remove any existing toast
