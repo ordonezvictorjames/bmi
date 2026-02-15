@@ -696,12 +696,6 @@ body {
   min-height: 400px;
 }
 
-.meal-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border-color: var(--black);
-}
-
 .meal-card.breakfast {
   background: var(--white);
   border-color: var(--border-light);
@@ -1271,15 +1265,6 @@ body {
   transition: opacity 0.3s ease;
 }
 
-.meal-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9));
-}
-
-.meal-card:hover::before {
-  opacity: 1;
-}
 
 .meal-header {
   display: flex;
@@ -1422,11 +1407,6 @@ body {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   z-index: 10;
-}
-
-.meal-card:hover .meal-image {
-  transform: scale(1.05) rotate(5deg);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
 }
 
 .allergy-safe-badge {
