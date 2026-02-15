@@ -282,15 +282,73 @@ body {
 
 /* Footer */
 .footer {
-  background: var(--white);
-  padding: 40px;
-  text-align: center;
-  border-top: 1px solid var(--border);
+  background: var(--primary-dark);
+  color: var(--white);
+  padding: 60px 40px 20px;
+  border-top: none;
 }
 
-.footer p {
-  color: var(--medium-gray);
+.footer-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-section h3,
+.footer-section h4 {
+  color: var(--white);
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
+.footer-logo {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.footer-tagline {
+  color: var(--primary-cream);
   font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  color: var(--primary-cream);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--white);
+}
+
+.footer-bottom {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(163, 177, 138, 0.3);
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: var(--primary-cream);
+  font-size: 14px;
+  margin: 0;
 }
 
 /* Modal */
@@ -525,6 +583,25 @@ body {
     padding: 10px 12px;
     font-size: 13px;
   }
+  
+  /* Footer responsive */
+  .footer {
+    padding: 40px 20px 20px;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+  
+  .footer-section {
+    text-align: center;
+  }
+  
+  .footer-bottom {
+    padding-top: 16px;
+  }
 }
 </style>
 </head>
@@ -595,7 +672,42 @@ body {
   </section>
 
   <footer class="footer">
-    <p>&copy; 2024 NutriFit. All rights reserved.</p>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3 class="footer-logo">NutriFit</h3>
+        <p class="footer-tagline">Your complete nutrition and fitness companion</p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="calculator.html">Calculator</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#">Reference</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="#" onclick="openBMIModal(); return false;">About BMI</a></li>
+          <li><a href="calculator.html">Meal Plans</a></li>
+          <li><a href="calculator.html">Nutrition Guide</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>About Us</h4>
+        <ul class="footer-links">
+          <li><a href="#">Team</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 NutriFit. All rights reserved.</p>
+    </div>
   </footer>
 
   <!-- BMI Modal -->
